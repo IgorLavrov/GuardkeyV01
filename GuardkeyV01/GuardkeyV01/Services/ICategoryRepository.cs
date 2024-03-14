@@ -12,17 +12,18 @@ namespace GuardkeyV01.Services
         Task<List<string>> GetCategoriesAsync();
 
 
-        Task<int> SaveCategoriesAsync(Category categories);
+        Task<int> SaveCategoriesAsync(Category category);
 
-        Task DeleteCategoriesAsync(Category categories);
+        Task DeleteCategoriesAsync(Category category);
 
-        Task<int> UpdateCategoriesAsync(Category Categories);
+        Task<int> UpdateCategoriesAsync(Category category);
 
 
         Task<Category> GetCategory(int id);
 
         Task<List<Category>> GetAllCategoriesAsync();
 
+        Task<List<Category>> FilterCategoriesAsync(string selectedFilter);
 
 
 
