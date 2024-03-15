@@ -10,16 +10,18 @@ using Xamarin.Forms.Xaml;
 namespace GuardkeyV01.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class RegistrationPage : ContentPage
     {
 
-        public LoginPage()
+
+        public RegistrationPage()
         {
             InitializeComponent();
-            Wire1UpEvents();
+            WireUpEvents();
 
         }
-        private void Wire1UpEvents()
+
+        private void WireUpEvents()
         {
             Digit1.TextChanged += (s, e) => MoveToNextEntry(Digit1, Digit2);
             Digit2.TextChanged += (s, e) => MoveToNextEntry(Digit2, Digit3);
@@ -33,31 +35,16 @@ namespace GuardkeyV01.Views
                 nextEntry.Focus();
         }
 
-
-
         private void HandlePinEntryComplete()
         {
             string pin = $"{Digit1.Text}{Digit2.Text}{Digit3.Text}{Digit4.Text}";
 
+            // Save PIN to preferences
+            Preferences.Set("UserPIN", pin);
 
-            var correctpin = Preferences.Get("UserPIN", "");
-
-            if (pin == correctpin)
-            {
-                Application.Current.MainPage = new NavigationPage(new SplashPage());
-
-            }
-            else
-            {
-
-                DisplayAlert("Incorrect PIN", $"You entered an incorrect PIN: {pin}", "OK");
-                Application.Current.MainPage = new NavigationPage(new LoginPage());
-                Digit1.Focus();
-
-            }
-
-
-
+            // Perform any additional logic with the entered PIN (e.g., authentication)
+            DisplayAlert("PIN Entered", $"You entered PIN: {pin}", "OK");
+            Application.Current.MainPage = new NavigationPage(new SplashPage());
         }
 
     }

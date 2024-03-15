@@ -4,6 +4,7 @@ using GuardkeyV01.Views;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,8 +19,22 @@ namespace GuardkeyV01
         {
             InitializeComponent();
 
+            var pin = Preferences.Get("UserPIN", "");
 
-            MainPage = new AppShell();
+            if (string.IsNullOrEmpty(pin))
+            {
+
+                //Shell.Current.GoToAsync(nameof(RegistrarionPage));
+
+                MainPage = new NavigationPage(new RegistrationPage());
+            }
+            else
+            {
+
+                //Shell.Current.GoToAsync(nameof(LoginPage));
+
+                MainPage = new NavigationPage(new LoginPage());
+            }
         }
 
         protected override void OnStart()
@@ -35,8 +50,7 @@ namespace GuardkeyV01
                 {
                     _database = new DatabaseCreator(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName));
                 }
-               
-            
+
         }
 
         protected override void OnSleep()

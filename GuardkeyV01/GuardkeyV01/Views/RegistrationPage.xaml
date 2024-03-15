@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuardkeyV01.Views.RegistrationPage"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="GuardkeyV01.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d"
+ Shell.NavBarIsVisible="False">
 
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
@@ -18,10 +18,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout>
-                    <Label Text="Enter a password"
+                    <Label Text="Registration: Choose your password"
                            Margin="30"
-                           FontSize="18"
-                           TextTransform="Uppercase"
+                           FontSize="18" 
                            TextColor="#ffffff"
                            HorizontalOptions="Center"
                            BackgroundColor="Transparent"/>
@@ -34,7 +33,7 @@
                                IsPassword="true" 
                                WidthRequest="40" 
                                TextColor="White" 
-                               BackgroundColor="Transparent"/>
+                               BackgroundColor="#1C0D2A"/>
                         <Entry x:Name="Digit2" 
                                Placeholder="*" 
                                PlaceholderColor="#d9d9d9" 
@@ -43,7 +42,7 @@
                                IsPassword="true" 
                                WidthRequest="40" 
                                TextColor="White" 
-                               BackgroundColor="Transparent"/>
+                               BackgroundColor="#1C0D2A"/>
                         <Entry x:Name="Digit3" 
                                Placeholder="*" 
                                PlaceholderColor="#d9d9d9" 
@@ -52,7 +51,7 @@
                                IsPassword="true" 
                                WidthRequest="40" 
                                TextColor="White" 
-                               BackgroundColor="Transparent"/>
+                               BackgroundColor="#1C0D2A"/>
                         <Entry x:Name="Digit4" 
                                Placeholder="*" 
                                PlaceholderColor="#d9d9d9" 
@@ -61,7 +60,7 @@
                                IsPassword="true" 
                                WidthRequest="40" 
                                TextColor="White" 
-                               BackgroundColor="Transparent"/>
+                               BackgroundColor="#1C0D2A"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>
