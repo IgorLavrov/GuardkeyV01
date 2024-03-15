@@ -10,14 +10,14 @@ namespace GuardkeyV01.ViewModels
 {
     internal class BaseViewModel:INotifyPropertyChanged
     {
-        private Note _Note;
+       
 
         public INavigation Navigation { get; set; }
 
        
-
-
         bool isBusy = false;
+
+
 
         public bool IsBusy
         {
@@ -27,6 +27,7 @@ namespace GuardkeyV01.ViewModels
                 SetProperty(ref isBusy, value);
             }
         }
+
 
         protected bool SetProperty<T>(ref T backingRecord, T value, [CallerMemberName] string propertyName = "", Action onChanged = null)
         {
@@ -40,9 +41,7 @@ namespace GuardkeyV01.ViewModels
 
 
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
