@@ -12,10 +12,7 @@ namespace GuardkeyV01.ViewModels
 {
     public  class CategoryViewModel : BaseViewModel,INotifyPropertyChanged
     {
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-      
+        public event PropertyChangedEventHandler PropertyChanged;      
 
         private bool isViewDetail = false;
         public bool IsViewDetail
@@ -27,7 +24,6 @@ namespace GuardkeyV01.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsViewDetail"));
             }
         }
-
         private string typeCommand = string.Empty;
         public string TypeCommand
         {
@@ -38,8 +34,6 @@ namespace GuardkeyV01.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TypeCommand"));
             }
         }
-
-
         private string categoryName;
         public string CategoryName
         {
@@ -50,10 +44,6 @@ namespace GuardkeyV01.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryName"));
             }
         }
-
-
-
-
         private Category selectedCategory;
         public Category SelectedCategory
         {
@@ -64,8 +54,6 @@ namespace GuardkeyV01.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedCategory"));
             }
         }
-
-
         private ObservableCollection<Category> categoryList;
         public ObservableCollection<Category> CategoryList
         {
@@ -76,7 +64,6 @@ namespace GuardkeyV01.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryList"));
             }
         }
-
         public Command cmdProcessTask { get; set; }
         public Command cmdCancelTask { get; set; }
         //-----------
@@ -85,11 +72,8 @@ namespace GuardkeyV01.ViewModels
         public Command cmdUpdateaTask { get; set; }
         public Command cmdMapTask { get; set; }
         //public Command OpenCategoryPageCommand { get; set; }
-
-
         public CategoryViewModel()
         {
-
             cmdProcessTask = new Command(ProcessCategories);
             cmdCancelTask = new Command(CancelCategories);
 
@@ -99,11 +83,7 @@ namespace GuardkeyV01.ViewModels
             //OpenCategoryPageCommand = new Command(OpenCategoryPage);
 
             getCategories();
-
-
-
         }
-
         private void UpdateaTask(object obj)
         {
             IsViewDetail = true;
@@ -111,7 +91,6 @@ namespace GuardkeyV01.ViewModels
             if (selectedCategory != null)
             {
                 CategoryName = selectedCategory.CategoryName;
-
             }
             else
             {
@@ -119,7 +98,6 @@ namespace GuardkeyV01.ViewModels
                 typeCommand = string.Empty;
             }
         }
-
         private async void DeleteCategories(object obj)
         {
             if (selectedCategory != null && selectedCategory.CategoryName != "All")
@@ -130,28 +108,22 @@ namespace GuardkeyV01.ViewModels
             }
             else
             {
-
                 IsViewDetail = false;
                 typeCommand = string.Empty;
                 await Application.Current.MainPage.DisplayAlert("Cannot Delete", "The 'All' option cannot be deleted.", "OK");
             }
-
         }
-
         private async void AddCategories(object obj)
         {
-
             IsViewDetail = true;
             TypeCommand = "Add";
             CategoryName = string.Empty;
         }
-
         private void CancelCategories(object obj)
         {
             IsViewDetail = false;
             typeCommand = string.Empty;
         }
-
         private async void ProcessCategories(object obj)
         {
             var categories = await App.categoryService.GetCategoriesAsync();
@@ -168,7 +140,6 @@ namespace GuardkeyV01.ViewModels
                     }
                 }
             }
-
             if (TypeCommand == "Add")
             {
                 var newCategory = new Category { CategoryName = CategoryName };
@@ -189,29 +160,22 @@ namespace GuardkeyV01.ViewModels
                     await App.categoryService.DeleteCategoriesAsync(SelectedCategory);
                 }
             }
-
             IsViewDetail = false;
             TypeCommand = string.Empty;
             SelectedCategory = null;
-             getCategories(); // Make sure to await the method call
-        }
-
-       
+            getCategories(); // Make sure to await the method call
+        }    
         public async void getCategories()
-        {
-         
+        {        
             var categories = await App.categoryService.GetCategoriesAsync(); // Call GetCategoriesAsync()
 
             var observableCollection = new ObservableCollection<Category>(categories);
 
             CategoryList = observableCollection;
         }
-
         public void OnAppearing()
         {
             getCategories();
         }
-
-
     }
 }
