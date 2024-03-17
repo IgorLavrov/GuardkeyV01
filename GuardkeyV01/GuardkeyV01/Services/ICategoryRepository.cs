@@ -9,7 +9,7 @@ namespace GuardkeyV01.Services
     public interface ICategoryRepository
     {
 
-        Task<List<string>> GetCategoriesAsync();
+        Task<IEnumerable<Category>> GetCategoriesAsync();
 
 
         Task<int> SaveCategoriesAsync(Category category);

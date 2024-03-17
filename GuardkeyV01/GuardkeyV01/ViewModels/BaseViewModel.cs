@@ -8,10 +8,10 @@ using Xamarin.Forms;
 
 namespace GuardkeyV01.ViewModels
 {
-    internal class BaseViewModel:INotifyPropertyChanged
+    public class BaseViewModel:INotifyPropertyChanged
     {
        
-
+        
         public INavigation Navigation { get; set; }
 
        

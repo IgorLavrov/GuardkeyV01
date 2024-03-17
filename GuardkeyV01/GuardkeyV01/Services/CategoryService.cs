@@ -12,15 +12,18 @@ namespace GuardkeyV01.Services
         {
             private readonly SQLiteAsyncConnection _database;
 
-            public CategoryService(SQLiteAsyncConnection database)
-            {
-                _database = database;
-                SeedCategoriesAsync().ConfigureAwait(false);
-            }
+        public CategoryService(SQLiteAsyncConnection database)
+        {
+            _database = database;
+            InitializeDatabase();
+        }
 
-           
-
-            private async Task SeedCategoriesAsync()
+        private async Task InitializeDatabase()
+        {
+            await _database.CreateTableAsync<Category>(); // Create Category table if not exists
+            await SeedCategoriesAsync();
+        }
+        private async Task SeedCategoriesAsync()
             {
                 var existingCategories = await _database.Table<Category>().ToListAsync().ConfigureAwait(false);
 
@@ -37,18 +40,14 @@ namespace GuardkeyV01.Services
                 }
             }
 
-            public async Task<List<string>> GetCategoriesAsync()
-            {
-                var categories = await _database.Table<Category>().ToListAsync().ConfigureAwait(false);
-                return categories.ConvertAll(c => c.CategoryName);
-            }
+        
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        {
+            var categories = await _database.Table<Category>().ToListAsync();
+            return categories;
+        }
 
-            
-
-          
-         
-
-            public Task<Category> GetCategory(int id)
+        public Task<Category> GetCategory(int id)
             {
                 return _database.Table<Category>().Where(c => c.Id == id).FirstOrDefaultAsync();
             }

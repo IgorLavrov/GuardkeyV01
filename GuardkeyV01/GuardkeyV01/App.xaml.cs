@@ -1,8 +1,10 @@
 ﻿
 using GuardkeyV01.Services;
 using GuardkeyV01.Views;
+using SQLite;
 using System;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -14,43 +16,51 @@ namespace GuardkeyV01
     {
         public string databaseName = "GuardKey";
         public DatabaseCreator _database;
+        public static CategoryService categoryService;
 
         public App()
         {
             InitializeComponent();
+            _database = new DatabaseCreator(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName));
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "database.db3");
+            var connection = new SQLiteAsyncConnection(databasePath);
+            categoryService = new CategoryService(connection);
+
+            
+
 
             var pin = Preferences.Get("UserPIN", "");
 
             if (string.IsNullOrEmpty(pin))
             {
-
-                //Shell.Current.GoToAsync(nameof(RegistrarionPage));
-
                 MainPage = new NavigationPage(new RegistrationPage());
             }
             else
             {
-
-                //Shell.Current.GoToAsync(nameof(LoginPage));
-
                 MainPage = new NavigationPage(new LoginPage());
             }
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            InitializeDatabase();
-
+            await InitializeDatabase();
         }
 
         private async Task InitializeDatabase()
         {
-           
-                if (_database == null)
+            if (_database == null)
+            {
+                try
                 {
                     _database = new DatabaseCreator(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName));
                 }
+                catch (Exception ex)
+                {
+                    
 
+                    Console.WriteLine($"Database initialization error: {ex.Message}");
+                }
+            }
         }
 
         protected override void OnSleep()
@@ -61,4 +71,5 @@ namespace GuardkeyV01
         {
         }
     }
+
 }

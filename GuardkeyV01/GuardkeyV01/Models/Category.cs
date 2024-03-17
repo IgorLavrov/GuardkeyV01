@@ -6,16 +6,31 @@ using System.Text;
 
 namespace GuardkeyV01.Models
 {
+    [SQLite.Table("Category")]
     public class Category
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         public string CategoryName { get; set; }
-        public int NoteId { get; set; }
 
         [ForeignKey(nameof(NoteId))]
-        [InverseProperty("Categorys")]
-        public Note Record { get; set; }
+        public int NoteId { get; set; }
 
+        [Ignore]
+        public Note Record { get; set; }
     }
+    //public class Category
+    //{
+    //    [PrimaryKey, AutoIncrement]
+    //    public int Id { get; set; }
+    //    public string CategoryName { get; set; }
+    //    public int NoteId { get; set; }
+
+    //    [ForeignKey(nameof(NoteId))]
+    //    [InverseProperty("Categorys")]
+
+    //    public Note Record { get; set; }
+
+    //}
 }
