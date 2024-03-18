@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardkeyV01.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace GuardkeyV01.Views
         public AddCategory()
         {
             InitializeComponent();
+            BindingContext = new CategoryViewModel();
         }
     }
 }

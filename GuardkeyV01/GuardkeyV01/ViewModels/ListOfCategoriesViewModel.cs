@@ -60,14 +60,14 @@ namespace GuardkeyV01.ViewModels
 
         public Command OpenCategoryPageCommand { get; }
         public Command<string> SelectedIndexChangedCommand { get; }
-        public Command AddRecordCommand { get; private set; }
+        public Command AddRecordCommand { get; }
 
-        private async void LoadCategories()
+        public async void LoadCategories()
         {
             var categories = await App.categoryService.GetAllCategoriesAsync();
             CategoryList = new ObservableCollection<Category>(categories);
         }
-        private async void LoadNames()
+        public async void LoadNames()
         {
             var categories = await App.categoryService.GetAllCategoriesAsync();
             CategoryNames = new ObservableCollection<string>(categories.Select(c => c.CategoryName));
@@ -90,6 +90,8 @@ namespace GuardkeyV01.ViewModels
         private async void OpenCategoryPage(object obj)
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+
+
         }
 
         private async void OnAddRecord(object obj)

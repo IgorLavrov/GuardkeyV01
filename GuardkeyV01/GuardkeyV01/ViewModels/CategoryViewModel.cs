@@ -7,181 +7,110 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GuardkeyV01.ViewModels
 {
-    public  class CategoryViewModel : BaseViewModel,INotifyPropertyChanged
+    public class CategoryViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;      
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private bool isViewDetail = false;
-        public bool IsViewDetail
-        {
-            get { return isViewDetail; }
-            set
-            {
-                isViewDetail = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsViewDetail"));
-            }
-        }
-        private string typeCommand = string.Empty;
-        public string TypeCommand
-        {
-            get { return typeCommand; }
-            set
-            {
-                typeCommand = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TypeCommand"));
-            }
-        }
-
-        private string categoryName;
+        private string _categoryName;
         public string CategoryName
         {
-            get { return categoryName; }
+            get { return _categoryName; }
             set
             {
-                categoryName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryName"));
+                _categoryName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CategoryName)));
             }
         }
-        private Category selectedCategory;
-        public Category SelectedCategory
-        {
-            get { return selectedCategory; }
-            set
-            {
-                selectedCategory = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedCategory"));
-            }
-        }
-        private ObservableCollection<Category> categoryList;
+
+        private ObservableCollection<Category> _categoryList;
         public ObservableCollection<Category> CategoryList
         {
-            get { return categoryList; }
+            get { return _categoryList; }
             set
             {
-                categoryList = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CategoryList"));
+                _categoryList = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CategoryList)));
             }
         }
-        public Command cmdProcessTask { get; set; }
-        public Command cmdCancelTask { get; set; }
-        //-----------
-        public Command cmdAddaTask { get; set; }
-        public Command cmdDeleteaTask { get; set; }
-        public Command cmdUpdateaTask { get; set; }
-        public Command cmdMapTask { get; set; }
-        //public Command OpenCategoryPageCommand { get; set; }
+
+        public ICommand AddCommand { get; }
+        public ICommand CancelCommand { get; }
+
         public CategoryViewModel()
         {
-            cmdProcessTask = new Command(ProcessCategories);
-            cmdCancelTask = new Command(CancelCategories);
+            AddCommand = new Command(AddExecute);
+            CancelCommand = new Command(CancelExecute);
 
-            cmdAddaTask = new Command(AddCategories);
-            cmdDeleteaTask = new Command(DeleteCategories);
-            cmdUpdateaTask = new Command(UpdateaTask);
-            //OpenCategoryPageCommand = new Command(OpenCategoryPage);
+            GetCategories();
+        }
 
-            getCategories();
-        }
-        private void UpdateaTask(object obj)
+        private async void AddExecute()
         {
-            IsViewDetail = true;
-            TypeCommand = "Update";
-            if (selectedCategory != null)
-            {
-                CategoryName = selectedCategory.CategoryName;
-            }
-            else
-            {
-                IsViewDetail = false;
-                typeCommand = string.Empty;
-            }
+            var newCategory = new Category { CategoryName = CategoryName };
+            await App.categoryService.SaveCategoriesAsync(newCategory);
+            GetCategories();
+            CategoryName = string.Empty; // Clear the entry after adding
+
         }
-        private async void DeleteCategories(object obj)
+
+        private void CancelExecute()
         {
-            if (selectedCategory != null && selectedCategory.CategoryName != "All")
-            {
-                IsViewDetail = true;
-                TypeCommand = "Delete";
-                CategoryName = selectedCategory.CategoryName;
-            }
-            else
-            {
-                IsViewDetail = false;
-                typeCommand = string.Empty;
-                await Application.Current.MainPage.DisplayAlert("Cannot Delete", "The 'All' option cannot be deleted.", "OK");
-            }
+            CategoryName = string.Empty; // Clear the entry if canceled
         }
-        private async void AddCategories(object obj)
-        {
-            IsViewDetail = true;
-            TypeCommand = "Add";
-            CategoryName = string.Empty;
-        }
-        private void CancelCategories(object obj)
-        {
-            IsViewDetail = false;
-            typeCommand = string.Empty;
-        }
-        private async void ProcessCategories(object obj)
+
+        private async void GetCategories()
         {
             var categories = await App.categoryService.GetCategoriesAsync();
-
-            if (TypeCommand == "Add" || TypeCommand == "Update")
-            {
-                foreach (var category in categories)
-                {
-                    if (category.CategoryName == CategoryName)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already exists.", "OK");
-                        TypeCommand = string.Empty;
-                        return;
-                    }
-                }
-            }
-            if (TypeCommand == "Add")
-            {
-                var newCategory = new Category { CategoryName = CategoryName };
-                await App.categoryService.SaveCategoriesAsync(newCategory);
-            }
-            else if (TypeCommand == "Update")
-            {
-                if (SelectedCategory != null)
-                {
-                    SelectedCategory.CategoryName = CategoryName;
-                    await App.categoryService.UpdateCategoriesAsync(SelectedCategory);
-                }
-            }
-            else if (TypeCommand == "Delete")
-            {
-                if (SelectedCategory != null)
-                {
-                    await App.categoryService.DeleteCategoriesAsync(SelectedCategory);
-                }
-            }
-            IsViewDetail = false;
-            TypeCommand = string.Empty;
-            SelectedCategory = null;
-            getCategories(); // Make sure to await the method call
-        }    
-        public async void getCategories()
-        {        
-            var categories = await App.categoryService.GetCategoriesAsync(); // Call GetCategoriesAsync()
-
-            var observableCollection = new ObservableCollection<Category>(categories);
-
-            CategoryList = observableCollection;
+            CategoryList = new ObservableCollection<Category>(categories);
         }
-        public void OnAppearing()
-        {
-            getCategories();
-        }
-
-       
-
-
     }
 }
+//    private async void ProcessCategories(object obj)
+//    {
+//        var categories = await App.categoryService.GetCategoriesAsync();
+
+//        if (TypeCommand == "Add" || TypeCommand == "Update")
+//        {
+//            foreach (var category in categories)
+//            {
+//                if (category.CategoryName == CategoryName)
+//                {
+//                    await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already exists.", "OK");
+//                    TypeCommand = string.Empty;
+//                    return;
+//                }
+//            }
+//        }
+//        if (TypeCommand == "Add")
+//        {
+//            var newCategory = new Category { CategoryName = CategoryName };
+//            await App.categoryService.SaveCategoriesAsync(newCategory);
+//        }
+//        else if (TypeCommand == "Update")
+//        {
+//            if (SelectedCategory != null)
+//            {
+//                SelectedCategory.CategoryName = CategoryName;
+//                await App.categoryService.UpdateCategoriesAsync(SelectedCategory);
+//            }
+//        }
+//        else if (TypeCommand == "Delete")
+//        {
+//            if (SelectedCategory != null)
+//            {
+//                await App.categoryService.DeleteCategoriesAsync(SelectedCategory);
+//            }
+//        }
+
+//        TypeCommand = string.Empty;
+//        SelectedCategory = null;
+//        getCategories(); // Make sure to await the method call
+//        await Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
+//    }    
+
+

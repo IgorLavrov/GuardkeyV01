@@ -13,10 +13,21 @@ namespace GuardkeyV01.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListOfCategories : ContentPage
     {
+        private ListOfCategoriesViewModel viewModel;
         public ListOfCategories()
         {
             InitializeComponent();
+            viewModel = new ListOfCategoriesViewModel();
+            BindingContext = viewModel;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.LoadCategories();
+            viewModel.LoadNames();
+        }
+
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
@@ -28,6 +39,11 @@ namespace GuardkeyV01.Views
                     viewModel.FilterItemsAsync(selectedItem);
                 }
             }
+        }
+        private void HandleCategoryChanged(object sender, EventArgs e)
+        {
+            viewModel.LoadCategories();
+            viewModel.LoadNames();
         }
 
     }

@@ -14,7 +14,7 @@ namespace GuardkeyV01
 
 
             Routing.RegisterRoute(nameof(ListOfCategories), typeof(ListOfCategories));
-
+            Routing.RegisterRoute(nameof(AddCategory), typeof(AddCategory));
 
         }
 

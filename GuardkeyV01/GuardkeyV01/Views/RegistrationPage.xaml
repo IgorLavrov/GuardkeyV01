@@ -33,7 +33,7 @@
                                IsPassword="true" 
                                WidthRequest="40" 
                                TextColor="White" 
-                               BackgroundColor="#1C0D2A"/>
+                               BackgroundColor="Transparent"/>
                         <Entry x:Name="Digit2" 
                                Placeholder="*" 
                                PlaceholderColor="#d9d9d9" 

@@ -87,7 +87,11 @@
 
     <FlyoutItem Title="Category" Icon="icon_feed.png">
         <ShellContent Title="List" Route="ListCategories" ContentTemplate="{DataTemplate local:ListOfCategories}"/>
- 
+        <ShellContent Route="AddCategory"
+                      FlyoutItemIsVisible="False"
+                      ContentTemplate="{DataTemplate local:AddCategory}"/>
+
+
     </FlyoutItem>
    
 

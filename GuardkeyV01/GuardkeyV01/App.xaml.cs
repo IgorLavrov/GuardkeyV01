@@ -22,7 +22,7 @@ namespace GuardkeyV01
         {
             InitializeComponent();
             _database = new DatabaseCreator(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName));
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "database.db3");
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName);
             var connection = new SQLiteAsyncConnection(databasePath);
             categoryService = new CategoryService(connection);
 

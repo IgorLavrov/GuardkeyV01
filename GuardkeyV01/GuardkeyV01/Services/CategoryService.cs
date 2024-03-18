@@ -18,8 +18,8 @@ namespace GuardkeyV01.Services
         }
         private async Task InitializeDatabase()
         {
-            await _database.CreateTableAsync<Category>(); // Create Category table if not exists
-            await SeedCategoriesAsync();
+           
+           await SeedCategoriesAsync();
         }
         private async Task SeedCategoriesAsync()
         {
@@ -72,7 +72,7 @@ namespace GuardkeyV01.Services
             if (string.IsNullOrWhiteSpace(category.CategoryName))
                 throw new ArgumentException("CategoryName cannot be null or empty.");
 
-            return _database.InsertOrReplaceAsync(category);
+            return _database.InsertAsync(category);
         }
         public Task DeleteCategoriesAsync(Category category)
         {
