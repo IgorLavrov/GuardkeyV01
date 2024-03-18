@@ -17,6 +17,7 @@ namespace GuardkeyV01.ViewModels
         {
             OpenCategoryPageCommand = new Command(OpenCategoryPage);
             SelectedIndexChangedCommand = new Command<string>(FilterItemsAsync);
+            AddRecordCommand = new Command(OnAddRecord);
 
             // Load categories first
             LoadCategories();
@@ -59,6 +60,7 @@ namespace GuardkeyV01.ViewModels
 
         public Command OpenCategoryPageCommand { get; }
         public Command<string> SelectedIndexChangedCommand { get; }
+        public Command AddRecordCommand { get; private set; }
 
         private async void LoadCategories()
         {
@@ -88,6 +90,12 @@ namespace GuardkeyV01.ViewModels
         private async void OpenCategoryPage(object obj)
         {
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
+        private async void OnAddRecord(object obj)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(AddCategory)}");
+            //await Application.Current.MainPage.Navigation.PushAsync(new AddUserRecordPage());
         }
     }
 }

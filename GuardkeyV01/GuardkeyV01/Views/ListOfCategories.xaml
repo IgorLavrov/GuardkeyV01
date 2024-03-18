@@ -5,11 +5,16 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GuardkeyV01.Views.ListOfCategories"
              BackgroundImageSource="background.png"
-             Title="{Binding SelectedItem, StringFormat='All Categories - {0}'}">
+             Title="{Binding SelectedItem, StringFormat='{0}'}">
 
     <ContentPage.BindingContext>
         <vm:ListOfCategoriesViewModel/>
     </ContentPage.BindingContext>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"  Command="{Binding AddRecordCommand}"/>
+    </ContentPage.ToolbarItems>
+
 
     <StackLayout Margin="5,30,5,5">
         <StackLayout Orientation="Horizontal" Padding="10">
