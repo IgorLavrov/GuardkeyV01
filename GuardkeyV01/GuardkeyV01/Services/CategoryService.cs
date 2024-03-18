@@ -57,13 +57,18 @@ namespace GuardkeyV01.Services
                 return _database.Table<Category>().ToListAsync();
             }
 
-            public Task<List<Category>> FilterCategoriesAsync(string selectedFilter)
-            {
-                if (selectedFilter == "All")
-                    return GetAllCategoriesAsync();
-
-                return _database.Table<Category>().Where(c => c.CategoryName == selectedFilter).ToListAsync();
-            }
+        //public Task<Category> FilterCategoriesAsync(string selectedFilter)
+        //{
+        //    return _database.Table<Category>()
+        //                    .Where(c => c.CategoryName.ToLower().Contains(selectedFilter.ToLower()))
+        //                    .FirstOrDefaultAsync();
+        //}
+        public Task<List<Category>> FilterCategoriesAsync(string selectedFilter)
+        {
+            return _database.Table<Category>()
+                            .Where(c => c.CategoryName.ToLower()==selectedFilter.ToLower())
+                            .ToListAsync();
+        }
 
         public Task<int> SaveCategoriesAsync(Category category)
         {

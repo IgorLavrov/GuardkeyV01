@@ -39,7 +39,6 @@ namespace GuardkeyV01.ViewModels
             }
         }
 
-
         private string categoryName;
         public string CategoryName
         {

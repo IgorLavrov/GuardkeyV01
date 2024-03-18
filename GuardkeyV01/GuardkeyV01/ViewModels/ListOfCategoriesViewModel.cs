@@ -3,146 +3,93 @@ using GuardkeyV01.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace GuardkeyV01.ViewModels
 {
-    public class ListCategoriesViewModel : BaseViewModel
+    public class ListOfCategoriesViewModel : BaseViewModel
     {
-        public ListCategoriesViewModel()
-    {
-
-
-        OpenCategoryPageCommand = new Command(OpenCategoryPage);
-
-        getCategories();
-
-
-
-    }
-
-    private ObservableCollection<Category> categoryList;
-    public ObservableCollection<Category> CategoryList
-    {
-        get { return categoryList; }
-        set
+        public ListOfCategoriesViewModel()
         {
-            categoryList = value;
-            OnPropertyChanged(nameof(CategoryList));
+            OpenCategoryPageCommand = new Command(OpenCategoryPage);
+            SelectedIndexChangedCommand = new Command<string>(FilterItemsAsync);
+
+            // Load categories first
+            LoadCategories();
+            LoadNames();
+            // Set the default selected item to "All"
+            FilterItemsAsync("All");
         }
-    }
 
-    private Category selectedCategory;
-    public Category SelectedCategory
-    {
-        get { return selectedCategory; }
-        set
+        private ObservableCollection<Category> _categoryList;
+        public ObservableCollection<Category> CategoryList
         {
-            selectedCategory = value;
-            OnPropertyChanged(nameof(SelectedCategory));
+            get => _categoryList;
+            set => SetProperty(ref _categoryList, value);
         }
-    }
 
-
-    public Command OpenCategoryPageCommand { get; set; }
-
-    string selectedItem = "All";
-    public string SelectedItem
-    {
-        get => selectedItem;
-        set
+        private ObservableCollection<string> _categoryNames;
+        public ObservableCollection<string> CategoryNames
         {
-            if (SetProperty(ref selectedItem, value))
+            get => _categoryNames;
+            set => SetProperty(ref _categoryNames, value);
+        }
+
+        private Category _selectedCategory;
+        public Category SelectedCategory
+        {
+            get => _selectedCategory;
+            set => SetProperty(ref _selectedCategory, value);
+        }
+
+        private string _selectedItem = "All";
+        public string SelectedItem
+        {
+            get => _selectedItem;
+            set
             {
-                OnPropertyChanged(nameof(SelectedItem));
-                FilterItemsAsync();
+                SetProperty(ref _selectedItem, value);
+                FilterItemsAsync(value); // Pass the selected item as a parameter
             }
         }
-    }
-    public async void getCategories()
-    {
-        var categories = await App.categoryService.GetAllCategoriesAsync();
 
-        var observableCollection = new ObservableCollection<Category>(categories);
+        public Command OpenCategoryPageCommand { get; }
+        public Command<string> SelectedIndexChangedCommand { get; }
 
-        CategoryList = observableCollection;
-    }
-
-    //public async void getCategories()
-    //{
-    //    try
-    //    {
-    //        var categories = await App.CategoryService.GetAllCategoriesAsync();
-
-    //        if (categories != null && categories.Any())
-    //        {
-    //            // Clear existing items only if the collection is not empty
-    //            if (CategoryList.Any())
-    //            {
-    //                Console.WriteLine("Clearing existing items in CategoryList");
-    //                CategoryList.Clear(); // Clear existing items
-    //            }
-
-    //            foreach (var category in categories)
-    //            {
-    //                Console.WriteLine($"Adding category: {category.CategoryName}");
-    //                CategoryList.Add(category); // Add new items
-    //            }
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        // Handle or log the exception
-    //        Console.WriteLine($"Error in getCategories: {ex.Message}");
-    //    }
-    //}
-
-    public async Task FilterItemsAsync()
-    {
-
-
-        if (string.IsNullOrEmpty(selectedItem) || selectedItem == "All")
+        private async void LoadCategories()
         {
-
-            getCategories();
+            var categories = await App.categoryService.GetAllCategoriesAsync();
+            CategoryList = new ObservableCollection<Category>(categories);
         }
-        else
+        private async void LoadNames()
         {
-            var filteredCategories = await App.categoryService.FilterCategoriesAsync(selectedItem);
+            var categories = await App.categoryService.GetAllCategoriesAsync();
+            CategoryNames = new ObservableCollection<string>(categories.Select(c => c.CategoryName));
+        }
 
-
-
-            CategoryList.Clear();
-            foreach (var category in filteredCategories)
+        public async void FilterItemsAsync(string selectedItem)
+        {
+            if (string.IsNullOrEmpty(selectedItem) || selectedItem == "All")
             {
-
-                CategoryList.Add(category);
+                LoadCategories(); // Load all categories
+            }
+            else
+            {
+                var filteredCategories = await App.categoryService.FilterCategoriesAsync(selectedItem);
+                CategoryList = new ObservableCollection<Category>(filteredCategories);
             }
         }
-    }
 
 
-
-
-
-    private int tapCount = 0;
-    private const int maxTapCount = 1;
-    private const int resetIntervalMilliseconds = 500;
-    private async void OpenCategoryPage(object obj)
-    {
-        tapCount++;
-
-
-        if (tapCount == maxTapCount)
+        private async void OpenCategoryPage(object obj)
         {
-
-
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
-            //await Shell.Current.GoToAsync($"//{nameof(UserRecordPage)}");
-            tapCount = 0;
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
     }
 }
-}
+
+   

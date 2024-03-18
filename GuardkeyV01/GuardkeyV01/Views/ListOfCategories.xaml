@@ -2,44 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:GuardkeyV01.ViewModels"
-            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="GuardkeyV01.Views.ListOfCategories" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="GuardkeyV01.Views.ListOfCategories"
              BackgroundImageSource="background.png"
              Title="{Binding SelectedItem, StringFormat='All Categories - {0}'}">
 
     <ContentPage.BindingContext>
-        <vm:ListCategoriesViewModel/>
+        <vm:ListOfCategoriesViewModel/>
     </ContentPage.BindingContext>
 
-
-
     <StackLayout Margin="5,30,5,5">
-
-    
         <StackLayout Orientation="Horizontal" Padding="10">
             <Label Text="Filter" VerticalOptions="Center" TextColor="White" />
-            <Picker ItemsSource="{Binding CategoryList}"
-                    SelectedItem="{Binding SelectedFilter, Mode=TwoWay}"
+      
+            <Picker ItemsSource="{Binding CategoryNames}"
+        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+        SelectedIndexChanged="Picker_SelectedIndexChanged"
         VerticalOptions="Center"
         HorizontalOptions="FillAndExpand"
         TextColor="White">
                 <Picker.ItemDisplayBinding>
-                    <Binding Path="CategoryName" />
+                    <Binding />
                 </Picker.ItemDisplayBinding>
             </Picker>
         </StackLayout>
-      
-
 
         <ListView x:Name="TaskList"
-          ItemsSource="{Binding CategoryList, Mode=TwoWay}"
-          SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
-          HasUnevenRows="True" BackgroundColor="Transparent" Margin="10"
-          SeparatorColor="Red" SelectionMode="Single">
+                  ItemsSource="{Binding CategoryList, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                  HasUnevenRows="True" BackgroundColor="Transparent" Margin="10"
+                  SeparatorColor="Red" SelectionMode="Single">
             <ListView.Behaviors>
-                <xct:EventToCommandBehavior EventName="ItemTapped" 
-                                    Command="{Binding OpenCategoryPageCommand}" 
-                                    CommandParameter="{Binding .}" />
+                <xct:EventToCommandBehavior EventName="ItemTapped"
+                                            Command="{Binding OpenCategoryPageCommand}"
+                                            CommandParameter="{Binding .}" />
             </ListView.Behaviors>
 
             <ListView.ItemTemplate>
@@ -54,71 +50,7 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-
 </ContentPage>
 
 
 
-<!--<?xml version="1.0" encoding="utf-8" ?>-->
-<!--ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:GuardkeyV01.ViewModels"
-             x:Class="GuardkeyV01.Views.ListOfCategories" 
-             BackgroundImageSource="background.png">
-
-    <ContentPage.BindingContext>
-        <vm:CategoryViewModel/>
-    </ContentPage.BindingContext>
-
-
-    <ContentPage.Content>
-        <StackLayout Margin="5,30,5,5" >
-            <StackLayout>
-                <Label TextColor="White" Text="Category Management" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" Margin="10"/>
-            </StackLayout>
-            <Frame IsVisible="{Binding IsViewDetail}" >
-                <StackLayout>
-                    <Entry x:Name="CategoryName" Text="{Binding CategoryName}" Placeholder="Category name" />
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="{Binding TypeCommand,Mode=TwoWay}" Command="{Binding cmdProcessTask}" BackgroundColor="DarkGreen" WidthRequest="100" TextColor="White"/>
-                        <Button Text="Cancel" Command="{Binding cmdCancelTask}" BackgroundColor="DarkGreen" WidthRequest="100" TextColor="White"/>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
-
-            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="Menu Option" FontSize="Medium" TextColor="White"/>
-            </StackLayout>
-
-            <ListView x:Name="TaskList" ItemsSource="{Binding CategoryList, Mode=TwoWay}" IsVisible="True"
-                      SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
-                      HasUnevenRows="True" BackgroundColor="Transparent" Margin="10"
-                      SeparatorColor="Red" SelectionMode="Single">
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal" BackgroundColor="DarkGray">
-                        <Button BackgroundColor="Transparent" TextTransform="None" TextColor="Green" FontAttributes="Bold" Text="Add" Command="{Binding cmdAddaTask}" />
-                        <Button BackgroundColor="Transparent" TextTransform="None" TextColor="Red" FontAttributes="Bold" Text="Delete" Command="{Binding cmdDeleteaTask}" />
-                        <Button BackgroundColor="Transparent" TextTransform="None" TextColor="DarkOrange" FontAttributes="Bold" Text="Update" Command="{Binding cmdUpdateaTask}" />
-                    </StackLayout>
-                </ListView.Header>
-
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" 
-                                         Margin="25" 
-                                         BackgroundColor="Transparent" >
-                                <Label TextColor="White" 
-                                       FontAttributes="Bold" 
-                                       TextTransform="Uppercase" 
-                                       Text="{Binding CategoryName}"  
-                                       VerticalOptions="CenterAndExpand"></Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>-->

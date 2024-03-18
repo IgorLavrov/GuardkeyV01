@@ -25,6 +25,7 @@ namespace GuardkeyV01.Services
 
         Task<List<Category>> FilterCategoriesAsync(string selectedFilter);
 
+        //Task<Category> FilterCategoriesAsync(string selectedFilter);
 
 
 

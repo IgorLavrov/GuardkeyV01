@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardkeyV01.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,18 @@ namespace GuardkeyV01.Views
         {
             InitializeComponent();
         }
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            if (picker.SelectedIndex != -1) // Check if a valid index is selected
+            {
+                var selectedItem = picker.SelectedItem?.ToString();
+                if (BindingContext is ListOfCategoriesViewModel viewModel)
+                {
+                    viewModel.FilterItemsAsync(selectedItem);
+                }
+            }
+        }
+
     }
 }
