@@ -26,9 +26,6 @@ namespace GuardkeyV01
             var connection = new SQLiteAsyncConnection(databasePath);
             categoryService = new CategoryService(connection);
 
-            
-
-
             var pin = Preferences.Get("UserPIN", "");
 
             if (string.IsNullOrEmpty(pin))
@@ -40,12 +37,10 @@ namespace GuardkeyV01
                 MainPage = new NavigationPage(new LoginPage());
             }
         }
-
         protected override async void OnStart()
         {
             await InitializeDatabase();
         }
-
         private async Task InitializeDatabase()
         {
             if (_database == null)
@@ -56,20 +51,15 @@ namespace GuardkeyV01
                 }
                 catch (Exception ex)
                 {
-                    
-
                     Console.WriteLine($"Database initialization error: {ex.Message}");
                 }
             }
         }
-
         protected override void OnSleep()
         {
         }
-
         protected override void OnResume()
         {
         }
     }
-
 }

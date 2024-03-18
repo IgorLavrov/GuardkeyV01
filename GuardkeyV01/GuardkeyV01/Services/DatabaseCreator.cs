@@ -20,19 +20,14 @@ namespace GuardkeyV01.Services
             _database.CreateTableAsync<Category>().Wait();
 
         }
-
         public SQLiteAsyncConnection GetConnection()
         {
             return _database;
         }
-
         public void Dispose()
         {
             _database.GetConnection().Close();
             _database.GetConnection().Dispose();
         }
-
-
-
     }
 }
