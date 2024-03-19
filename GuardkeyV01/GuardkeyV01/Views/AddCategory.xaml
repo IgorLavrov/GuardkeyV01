@@ -1,7 +1,8 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuardkeyV01.Views.AddCategory"
-             BackgroundImageSource="background.png">
+             BackgroundImageSource="background.png"
+             Shell.PresentationMode="ModalAnimated">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
@@ -16,27 +17,4 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-            <!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GuardkeyV01.Views.AddCategory"
-             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
-             BackgroundImageSource="background.png">
-
-    <ContentPage.BindingContext>
-        <local:CategoryViewModel/>
-    </ContentPage.BindingContext>
-
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <StackLayout BackgroundColor="Transparent" Padding="20" Spacing="20">
-                <Entry x:Name="CategoryName" Text="{Binding CategoryName}" Placeholder="Category name" TextColor="White" PlaceholderColor="LightGray"
-                       BackgroundColor="Transparent" HeightRequest="40"/>
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Add" Command="{Binding cmdAddaTask}" BackgroundColor="#4CAF50" WidthRequest="100" TextColor="White"/>
-                    <Button Text="Cancel" Command="{Binding cmdCancelTask}" BackgroundColor="#E57373" WidthRequest="100" TextColor="White"/>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>-->
+           

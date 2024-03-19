@@ -89,7 +89,7 @@ namespace GuardkeyV01.ViewModels
 
         private async void OpenCategoryPage(object obj)
         {
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(NotePage)}");
 
 
         }

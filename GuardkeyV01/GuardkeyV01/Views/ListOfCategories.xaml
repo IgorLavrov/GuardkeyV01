@@ -5,7 +5,8 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GuardkeyV01.Views.ListOfCategories"
              BackgroundImageSource="background.png"
-             Title="{Binding SelectedItem, StringFormat='{0}'}">
+             Title="{Binding SelectedItem, StringFormat='{0}'}"
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.BindingContext>
         <vm:ListOfCategoriesViewModel/>
@@ -31,6 +32,7 @@
                 </Picker.ItemDisplayBinding>
             </Picker>
         </StackLayout>
+        
 
         <ListView x:Name="TaskList"
                   ItemsSource="{Binding CategoryList, Mode=TwoWay}"
@@ -46,10 +48,32 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="25" BackgroundColor="Transparent">
+                        <Grid Margin="25" BackgroundColor="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!-- Left Image -->
+                            <Image Source="Ellipse1.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
+                            <!-- Label -->
+                            <Label Grid.Column="1" TextColor="White" FontAttributes="Bold" TextTransform="Uppercase" Text="{Binding CategoryName}" VerticalOptions="Center"/>
+                            <!-- Right Image (Delete Icon) -->
+                            <Image Grid.Column="2" Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DeleteCategoryCommand}" CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <!--<StackLayout Orientation="Horizontal" Margin="25" BackgroundColor="Transparent">
                             <Image Source="Ellipse1.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End"/>
                             <Label TextColor="White" FontAttributes="Bold" TextTransform="Uppercase" Text="{Binding CategoryName}" VerticalOptions="CenterAndExpand"/>
-                        </StackLayout>
+                            <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DeleteCategoryCommand}" CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

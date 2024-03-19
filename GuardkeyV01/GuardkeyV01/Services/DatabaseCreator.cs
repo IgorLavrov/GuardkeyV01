@@ -10,7 +10,7 @@ namespace GuardkeyV01.Services
 {
     public class DatabaseCreator:IDisposable
     {
-        readonly SQLiteAsyncConnection  _database;
+        public readonly SQLiteAsyncConnection _database;
         public SQLiteAsyncConnection Database => _database;
 
         public DatabaseCreator(string dbPath)
@@ -24,6 +24,7 @@ namespace GuardkeyV01.Services
         {
             return _database;
         }
+
         public void Dispose()
         {
             _database.GetConnection().Close();

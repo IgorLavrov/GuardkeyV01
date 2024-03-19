@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,13 @@ namespace GuardkeyV01.Services
 
                     await _database.InsertAllAsync(initialCategories).ConfigureAwait(false);
                 }
-        }        
+        }
+        public async Task<List<string>> GetAllByCategoriesNameAsync()
+        {
+            var categories = await _database.Table<Category>().ToListAsync();
+            return categories.Select(c => c.CategoryName).ToList();
+        }
+
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             var categories = await _database.Table<Category>().ToListAsync();
@@ -53,12 +60,6 @@ namespace GuardkeyV01.Services
                 return _database.Table<Category>().ToListAsync();
             }
 
-        //public Task<Category> FilterCategoriesAsync(string selectedFilter)
-        //{
-        //    return _database.Table<Category>()
-        //                    .Where(c => c.CategoryName.ToLower().Contains(selectedFilter.ToLower()))
-        //                    .FirstOrDefaultAsync();
-        //}
         public Task<List<Category>> FilterCategoriesAsync(string selectedFilter)
         {
             return _database.Table<Category>()

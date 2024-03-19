@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
+             xmlns:model="clr-namespace:GuardkeyV01.Models"
+             x:Class="GuardkeyV01.Views.NotePage"
+             BackgroundImageSource="background.png">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+          
+                <SearchBar Placeholder="Search"
+                           PlaceholderColor="White"
+                           BackgroundColor="Transparent" 
+                           TextColor="White" 
+                           Text="{Binding SearchText}" 
+                           SearchCommand="{Binding SearchCommand}" />
+
+                <RefreshView x:DataType="local:NoteViewModel"
+                         Command="{Binding LoadUserRecordCommand}"
+                         IsRefreshing="{Binding IsBusy,Mode=OneWay}">
+                    <CollectionView ItemsSource="{Binding Notes}"
+                     SelectionMode="None">
+                        <CollectionView.EmptyView>
+                            <Label Text="Choose your search option !" 
+                                   HorizontalOptions="Center" 
+                                   FontAttributes="Italic" 
+                                   FontSize="Large"
+                                   TextColor="White"/>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout x:DataType="model:Note">
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItem Text="Delete" 
+                                                           BackgroundColor="Red"  
+                                                           Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+                                                    Path=UserRecordTappedDelete}" CommandParameter=" {Binding .}"/>
+                                                <SwipeItem IsDestructive="True" Text="Close" BackgroundColor="Green"/>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+
+                                        <Grid>
+                                            <Frame CornerRadius="10" 
+                                                   HasShadow="True"  
+                                                   BorderColor="#BB2C7A"
+                                                   BackgroundColor="#1C0D2A">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <StackLayout >
+                                                      
+                                                        <Label Grid.Row="1" 
+                                                               Grid.Column="1" 
+                                                               Text="{Binding ResourceName}" 
+                                                               TextColor="White" ></Label>
+                                                    </StackLayout>
+                                                    <StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                        <Image Source="edit.png" Grid.Column="1" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+                                                            Path=UserRecordTappedEdit}" CommandParameter=" {Binding .}"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </SwipeView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Label Text="Password Card" 
+                                       FontSize="Large" 
+                                       TextColor="Gray" 
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </CollectionView.Header>
+                  
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

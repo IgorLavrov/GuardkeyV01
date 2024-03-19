@@ -14,11 +14,7 @@ namespace GuardkeyV01.Models
 
         public string CategoryName { get; set; }
 
-        //[ForeignKey(nameof(NoteId))]
-        //public int NoteId { get; set; }
-
-        //[Ignore]
-        //public Note Record { get; set; }
+      
     }
    
 }

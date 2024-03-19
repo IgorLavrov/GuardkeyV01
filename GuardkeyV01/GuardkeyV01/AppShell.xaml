@@ -79,25 +79,30 @@
                 <!-- Add your image here -->
                 <Image Source="logo.jpg" Aspect="AspectFill" HeightRequest="150" />
 
-                <!-- You can also add other UI elements below the image if needed -->
-                <Label Text="Welcome to Menu page" FontSize="20" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
             </StackLayout>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
     <FlyoutItem Title="Category" Icon="icon_feed.png">
-        <ShellContent Title="List" Route="ListCategories" ContentTemplate="{DataTemplate local:ListOfCategories}"/>
-        <ShellContent Route="AddCategory"
-                      FlyoutItemIsVisible="False"
-                      ContentTemplate="{DataTemplate local:AddCategory}"/>
+        <ShellContent Icon="icon_about.png" Route="ListOfCategories" ContentTemplate="{DataTemplate local:ListOfCategories}"/>
+            <ShellContent Icon="icon_about.png" Route="AddCategory" ContentTemplate="{DataTemplate local:AddCategory}" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="Add New Record" Icon="icon_feed.png">
+        <ShellContent  Route="AddNote" ContentTemplate="{DataTemplate local:AddNote}"/>
+       
+    </FlyoutItem>
+    <FlyoutItem Title="List of Record" Icon="icon_feed.png">
+        <ShellContent  Route="NotePage" ContentTemplate="{DataTemplate local:NotePage}"/>
 
     </FlyoutItem>
-   
 
+    <MenuItem Text="Help" IconImageSource="edit.png" Command="{Binding HelpCommand}">
 
+    </MenuItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+        
     </MenuItem> 
   
     <TabBar>

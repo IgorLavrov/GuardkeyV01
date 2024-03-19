@@ -11,10 +11,12 @@ namespace GuardkeyV01.Services
     public class NoteService :INoteRepository
     {
         private SQLiteAsyncConnection _database;
-        public NoteService(DatabaseCreator database)
+
+        public NoteService(SQLiteAsyncConnection database)
         {
-            _database = database.GetConnection();
+            _database = database;
         }
+    
         public async Task<bool> AddUserRecordAsync(Note record)
         {
             if (record.NoteId > 0)
@@ -23,7 +25,7 @@ namespace GuardkeyV01.Services
             }
             else
             {
-                await _database.InsertOrReplaceAsync(record); // Corrected line for inserting or replacing
+                await _database.InsertAsync(record); 
             }
             return await Task.FromResult(true);
         }

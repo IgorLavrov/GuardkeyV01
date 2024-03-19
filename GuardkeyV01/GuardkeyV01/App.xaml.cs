@@ -15,8 +15,9 @@ namespace GuardkeyV01
     public partial class App : Application
     {
         public string databaseName = "GuardKey";
-        public DatabaseCreator _database;
+        public static DatabaseCreator _database;
         public static CategoryService categoryService;
+        public static NoteService NoteService;
 
         public App()
         {
@@ -25,6 +26,8 @@ namespace GuardkeyV01
             var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), databaseName);
             var connection = new SQLiteAsyncConnection(databasePath);
             categoryService = new CategoryService(connection);
+            NoteService = new NoteService(connection);
+
 
             var pin = Preferences.Get("UserPIN", "");
 

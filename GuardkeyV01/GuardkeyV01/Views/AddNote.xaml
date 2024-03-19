@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuardkeyV01.Views.AddNote"
+             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
+             Shell.PresentationMode="ModalAnimated">
+
+    <ContentPage.BindingContext>
+        <local:AddNoteViewModel/>
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" Spacing="5" Padding="15">
+
+            <Picker x:Name="filterOptionsPicker"
+                ItemsSource="{Binding FilterOptions}" 
+                SelectedItem="{Binding SelectedFilter}" 
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand" 
+                Background="wheat"
+                SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"/>
+            <Label Text="Resource" TextColor="White" />
+            <Entry Text="{Binding Note.ResourceName,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
+            <Label Text="Name" TextColor="White" />
+            <Entry Text="{Binding Note.UserName,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
+            <Label Text="Password" TextColor="White"/>
+            <Entry Text="{Binding Note.Password,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
+            <Label Text="Description" TextColor="White"/>
+            <Entry Text="{Binding Note.Description,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
+
+            <StackLayout>
+                <Button Text="Save"  Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

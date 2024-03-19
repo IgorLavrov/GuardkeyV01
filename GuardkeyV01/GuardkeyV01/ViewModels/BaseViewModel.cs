@@ -10,9 +10,18 @@ namespace GuardkeyV01.ViewModels
 {
     public class BaseViewModel:INotifyPropertyChanged
     {
-       
-        
+        private Note _record;
+
         public INavigation Navigation { get; set; }
+
+        public Note Note
+        {
+            get { return _record; }
+            set { _record = value; OnPropertyChanged(); }
+
+        }
+
+       
 
        
         bool isBusy = false;
