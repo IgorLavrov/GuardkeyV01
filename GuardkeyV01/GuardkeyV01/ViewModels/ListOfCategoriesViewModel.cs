@@ -18,6 +18,7 @@ namespace GuardkeyV01.ViewModels
             OpenCategoryPageCommand = new Command(OpenCategoryPage);
             SelectedIndexChangedCommand = new Command<string>(FilterItemsAsync);
             AddRecordCommand = new Command(OnAddRecord);
+            DeleteCategoryCommand = new Command(DeleteRecord);
 
             // Load categories first
             LoadCategories();
@@ -61,6 +62,8 @@ namespace GuardkeyV01.ViewModels
         public Command OpenCategoryPageCommand { get; }
         public Command<string> SelectedIndexChangedCommand { get; }
         public Command AddRecordCommand { get; }
+        public Command DeleteCategoryCommand { get; }
+       
 
         public async void LoadCategories()
         {
@@ -99,6 +102,37 @@ namespace GuardkeyV01.ViewModels
             await Shell.Current.GoToAsync($"//{nameof(AddCategory)}");
             //await Application.Current.MainPage.Navigation.PushAsync(new AddUserRecordPage());
         }
+        private async void DeleteRecord(object obj)
+        {
+            if (obj is Category category)
+            {
+                if (category.CategoryName != "All")
+                {
+                    try
+                    {
+                        // Attempt to delete the selected category from the database
+                        await App.categoryService.DeleteCategoriesAsync(category);
+
+                        // If deletion is successful, remove the category from the CategoryList
+                        CategoryList.Remove(category);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any exceptions that may occur during deletion
+
+                        await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete the category: {ex.Message}", "OK");
+                    }
+                }
+                else
+                {
+                    // Inform the user that the "All" option cannot be deleted
+                  
+                    await Application.Current.MainPage.DisplayAlert("Cannot Delete", "The 'All' option cannot be deleted.", "OK");
+                }
+            }
+        }
+
+
     }
 }
 

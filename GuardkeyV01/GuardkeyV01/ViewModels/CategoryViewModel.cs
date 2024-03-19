@@ -70,47 +70,5 @@ namespace GuardkeyV01.ViewModels
         }
     }
 }
-//    private async void ProcessCategories(object obj)
-//    {
-//        var categories = await App.categoryService.GetCategoriesAsync();
-
-//        if (TypeCommand == "Add" || TypeCommand == "Update")
-//        {
-//            foreach (var category in categories)
-//            {
-//                if (category.CategoryName == CategoryName)
-//                {
-//                    await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already exists.", "OK");
-//                    TypeCommand = string.Empty;
-//                    return;
-//                }
-//            }
-//        }
-//        if (TypeCommand == "Add")
-//        {
-//            var newCategory = new Category { CategoryName = CategoryName };
-//            await App.categoryService.SaveCategoriesAsync(newCategory);
-//        }
-//        else if (TypeCommand == "Update")
-//        {
-//            if (SelectedCategory != null)
-//            {
-//                SelectedCategory.CategoryName = CategoryName;
-//                await App.categoryService.UpdateCategoriesAsync(SelectedCategory);
-//            }
-//        }
-//        else if (TypeCommand == "Delete")
-//        {
-//            if (SelectedCategory != null)
-//            {
-//                await App.categoryService.DeleteCategoriesAsync(SelectedCategory);
-//            }
-//        }
-
-//        TypeCommand = string.Empty;
-//        SelectedCategory = null;
-//        getCategories(); // Make sure to await the method call
-//        await Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
-//    }    
 
 

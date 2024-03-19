@@ -61,7 +61,7 @@
                             <!-- Right Image (Delete Icon) -->
                             <Image Grid.Column="2" Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding DeleteCategoryCommand}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=TaskList}}" CommandParameter="{Binding .}" />
                                 </Image.GestureRecognizers>
                             </Image>
                         </Grid>
