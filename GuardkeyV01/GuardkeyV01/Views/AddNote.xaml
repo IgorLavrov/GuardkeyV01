@@ -18,8 +18,11 @@
                 SelectedItem="{Binding SelectedFilter}" 
                 VerticalOptions="Center" 
                 HorizontalOptions="FillAndExpand" 
-                Background="wheat"
-                SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"/>
+                Title="Categories"
+                TitleColor="white"
+                TextColor="white"    
+                SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"
+                    Margin="10"/>
             <Label Text="Resource" TextColor="White" />
             <Entry Text="{Binding Note.ResourceName,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
             <Label Text="Name" TextColor="White" />

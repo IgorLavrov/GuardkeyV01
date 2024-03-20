@@ -15,15 +15,17 @@ namespace GuardkeyV01.ViewModels
     {
         public ListOfCategoriesViewModel()
         {
+
+
             OpenCategoryPageCommand = new Command(OpenCategoryPage);
             SelectedIndexChangedCommand = new Command<string>(FilterItemsAsync);
             AddRecordCommand = new Command(OnAddRecord);
             DeleteCategoryCommand = new Command(DeleteRecord);
 
-            // Load categories first
+          
             LoadCategories();
             LoadNames();
-            // Set the default selected item to "All"
+            
             FilterItemsAsync("All");
         }
 
@@ -55,7 +57,7 @@ namespace GuardkeyV01.ViewModels
             set
             {
                 SetProperty(ref _selectedItem, value);
-                FilterItemsAsync(value); // Pass the selected item as a parameter
+                FilterItemsAsync(value); 
             }
         }
 
@@ -80,7 +82,7 @@ namespace GuardkeyV01.ViewModels
         {
             if (string.IsNullOrEmpty(selectedItem) || selectedItem == "All")
             {
-                LoadCategories(); // Load all categories
+                LoadCategories(); 
             }
             else
             {
@@ -88,19 +90,20 @@ namespace GuardkeyV01.ViewModels
                 CategoryList = new ObservableCollection<Category>(filteredCategories);
             }
         }
-
-
         private async void OpenCategoryPage(object obj)
         {
-            await Shell.Current.GoToAsync($"//{nameof(NotePage)}");
-
-
+            if (SelectedCategory != null)
+            {
+                // Pass the selected category as a parameter while navigating to the NotePage
+                await Shell.Current.GoToAsync($"//{nameof(NotePage)}?selectedCategory={SelectedCategory.CategoryName}");
+            }
         }
+
 
         private async void OnAddRecord(object obj)
         {
             await Shell.Current.GoToAsync($"//{nameof(AddCategory)}");
-            //await Application.Current.MainPage.Navigation.PushAsync(new AddUserRecordPage());
+          
         }
         private async void DeleteRecord(object obj)
         {
@@ -110,22 +113,22 @@ namespace GuardkeyV01.ViewModels
                 {
                     try
                     {
-                        // Attempt to delete the selected category from the database
+                        
                         await App.categoryService.DeleteCategoriesAsync(category);
 
-                        // If deletion is successful, remove the category from the CategoryList
+                     
                         CategoryList.Remove(category);
                     }
                     catch (Exception ex)
                     {
-                        // Handle any exceptions that may occur during deletion
+                        
 
                         await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete the category: {ex.Message}", "OK");
                     }
                 }
                 else
                 {
-                    // Inform the user that the "All" option cannot be deleted
+                    
                   
                     await Application.Current.MainPage.DisplayAlert("Cannot Delete", "The 'All' option cannot be deleted.", "OK");
                 }

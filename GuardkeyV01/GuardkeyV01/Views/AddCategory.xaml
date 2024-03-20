@@ -2,13 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuardkeyV01.Views.AddCategory"
              BackgroundImageSource="background.png"
-             Shell.PresentationMode="ModalAnimated">
+             Shell.PresentationMode="ModalAnimated"
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
             <StackLayout BackgroundColor="Transparent" Padding="20" Spacing="20">
                 <Entry Text="{Binding CategoryName}" Placeholder="Category name" TextColor="White" PlaceholderColor="LightGray"
-                       BackgroundColor="Transparent" HeightRequest="40"/>
+                       BackgroundColor="Transparent" HeightRequest="40" TextChanged="Entry_TextChanged"/>
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Add" Command="{Binding AddCommand}" BackgroundColor="#4CAF50" WidthRequest="100" TextColor="White"/>
                     <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="#E57373" WidthRequest="100" TextColor="White"/>

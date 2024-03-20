@@ -1,4 +1,5 @@
-﻿using GuardkeyV01.ViewModels;
+﻿using GuardkeyV01.Models;
+using GuardkeyV01.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace GuardkeyV01.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+         
             userRecordViewModel.RefreshFilterOptionsAsync();
             userRecordViewModel.OnAppearing();
         }

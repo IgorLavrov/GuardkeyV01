@@ -23,7 +23,7 @@
                     <CollectionView ItemsSource="{Binding Notes}"
                      SelectionMode="None">
                         <CollectionView.EmptyView>
-                            <Label Text="Choose your search option !" 
+                            <Label Text=" No record found !" 
                                    HorizontalOptions="Center" 
                                    FontAttributes="Italic" 
                                    FontSize="Large"
@@ -76,8 +76,13 @@
                             <StackLayout>
                                 <Label Text="Password Card" 
                                        FontSize="Large" 
-                                       TextColor="Gray" 
+                                       TextColor="GhostWhite" 
                                        HorizontalOptions="Center"/>
+                                <Label Text="Swipe left to delete" 
+       FontSize="Small" 
+       TextColor="WhiteSmoke" 
+       HorizontalOptions="Center"
+                                       TextDecorations="Underline" Margin="10"/>
                             </StackLayout>
                         </CollectionView.Header>
                   

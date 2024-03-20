@@ -63,18 +63,72 @@ namespace GuardkeyV01.ViewModels
             }
         }
 
-
-
-        string selectedFilter = "All";
-        public string SelectedFilter
+        //private string selectedCategory;
+        //public string SelectedCategory
+        //{
+        //    get => selectedCategory;
+        //    set
+        //    {
+        //        if (selectedCategory != value)
+        //        {
+        //            selectedCategory = value;
+        //            OnPropertyChanged(nameof(SelectedCategory));
+        //            FilterItemsAsync();
+        //        }
+        //    }
+        //}
+        private Category selectedCategory;
+        public Category SelectedCategory
         {
-            get => selectedFilter;
+            get => selectedCategory;
             set
             {
-                if (SetProperty(ref selectedFilter, value))
-                    FilterItemsAsync();
+                if (selectedCategory != value)
+                {
+                    selectedCategory = value;
+                    OnPropertyChanged(nameof(SelectedCategory));
+                    FilterItemsAsync(value);
+                }
             }
         }
+
+        async Task FilterItemsAsync(Category selectedCategory)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (selectedCategory?.CategoryName == "All") // Check the Name property of SelectedCategory
+                {
+                    // Load all records
+                    await ExecuteLoadUserRecordCommand();
+                }
+                else
+                {
+                    // Filter records based on the selected category name
+                    IEnumerable<Note> filteredRecords;
+                    filteredRecords = await App.NoteService.SortRecordByPicker(selectedCategory.CategoryName); // Pass the category name
+
+                    // Clear the existing records and add the filtered ones
+                    Notes.Clear();
+                    foreach (var record in filteredRecords)
+                    {
+                        Notes.Add(record);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+
+
 
 
 
@@ -97,7 +151,7 @@ namespace GuardkeyV01.ViewModels
             LoadUserRecordCommand = new Command(async () => await ExecuteLoadUserRecordCommand());
             Notes = new ObservableCollection<Note>();
             AddUserRecordCommand = new Command(OnAddUserRecord);
-            //UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
+            UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
             //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>();
             UserRecordTappedDelete = new Command<Note>(OnDeleteUserRecord);
             ClearRecordCommand = new Command(ClearRecord);
@@ -120,43 +174,55 @@ namespace GuardkeyV01.ViewModels
             OnPropertyChanged(nameof(FilterOptions));
         }
 
-        async Task FilterItemsAsync()
-        {
+
+        //string selectedFilter = "All";
+        //public string SelectedFilter
+        //{
+        //    get => selectedFilter;
+        //    set
+        //    {
+        //        if (SetProperty(ref selectedFilter, value))
+        //            FilterItemsAsync(value);
+        //    }
+        //}
+
+        //async Task FilterItemsAsync()
+        //{
 
 
-            try
-            {
-                IsBusy = true;
+        //    try
+        //    {
+        //        IsBusy = true;
 
-                if (SelectedFilter == "All")
-                {
-                    // Load all records
-                    await ExecuteLoadUserRecordCommand();
-                }
-                else
-                {
-                    IEnumerable<Note> filteredRecords;
-                    // Filter records based on the selected option
-                    filteredRecords = await App.NoteService.SortRecordByPicker(SelectedFilter);
+        //        if (SelectedFilter == "All")
+        //        {
+        //            // Load all records
+        //            await ExecuteLoadUserRecordCommand();
+        //        }
+        //        else
+        //        {
+        //            IEnumerable<Note> filteredRecords;
+        //            // Filter records based on the selected option
+        //            filteredRecords = await App.NoteService.SortRecordByPicker(SelectedFilter);
 
-                    // Clear the existing records and add the filtered ones
-                    Notes.Clear();
-                    foreach (var record in filteredRecords)
-                    {
-                        Notes.Add(record);
-                    }
+        //            // Clear the existing records and add the filtered ones
+        //            Notes.Clear();
+        //            foreach (var record in filteredRecords)
+        //            {
+        //                Notes.Add(record);
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex);
+        //    }
+        //    finally
+        //    {
+        //        IsBusy = false;
+        //    }
+        //}
 
 
 
@@ -202,11 +268,11 @@ namespace GuardkeyV01.ViewModels
             await ExecuteLoadUserRecordCommand();
         }
 
-        //private async void OnEditUserRecord(Note record)
-        //{
+        private async void OnEditUserRecord(Note record)
+        {
 
-        //    await Navigation.PushAsync(new AddNote(record));
-        //}
+            await Navigation.PushAsync(new AddNote(record));
+        }
 
 
         private async void OnAddUserRecord(object obj)

@@ -18,5 +18,14 @@ namespace GuardkeyV01.Views
             InitializeComponent();
             BindingContext = new CategoryViewModel();
         }
+
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is Entry entry)
+            {
+                entry.Text = e.NewTextValue.ToUpper();
+            }
+        }
     }
 }

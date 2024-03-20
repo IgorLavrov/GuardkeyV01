@@ -51,16 +51,33 @@ namespace GuardkeyV01.ViewModels
 
         private async void AddExecute()
         {
+            List<string> categoriesNames = new List<string>();
+            categoriesNames = await App.categoryService.GetAllByCategoriesNameAsync();
+
+            
+                foreach (var item in categoriesNames)
+                {
+                    if (item == CategoryName)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already existed.", "OK");
+                    CategoryName = string.Empty;
+                }
+                }
+
+            if (!string.IsNullOrWhiteSpace(CategoryName))
+            {
             var newCategory = new Category { CategoryName = CategoryName };
             await App.categoryService.SaveCategoriesAsync(newCategory);
             GetCategories();
             CategoryName = string.Empty; // Clear the entry after adding
-
+            }
         }
 
         private void CancelExecute()
         {
-            CategoryName = string.Empty; // Clear the entry if canceled
+            CategoryName = string.Empty;
+            Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
+
         }
 
         private async void GetCategories()

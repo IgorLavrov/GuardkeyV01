@@ -30,9 +30,9 @@ namespace GuardkeyV01.Services
                 {
                     var initialCategories = new List<Category>
                     {
-                    new Category { CategoryName = "All" },
-                    new Category { CategoryName = "Home" },
-                    new Category { CategoryName = "Groceries" }
+                    new Category { CategoryName = "ALL" },
+                    new Category { CategoryName = "HOME" },
+                    new Category { CategoryName = "GROCERIES" }
                     };
 
                     await _database.InsertAllAsync(initialCategories).ConfigureAwait(false);
@@ -70,8 +70,7 @@ namespace GuardkeyV01.Services
 
         public Task<int> SaveCategoriesAsync(Category category)
         {
-            if (string.IsNullOrWhiteSpace(category.CategoryName))
-                throw new ArgumentException("CategoryName cannot be null or empty.");
+           
 
             return _database.InsertAsync(category);
         }

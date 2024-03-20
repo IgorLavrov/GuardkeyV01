@@ -135,6 +135,9 @@
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.8.116</Version>
     </PackageReference>
+    <PackageReference Include="sqlite-net-sqlcipher">
+      <Version>1.7.335</Version>
+    </PackageReference>
     <PackageReference Include="SQLiteNetExtensions">
       <Version>2.1.0</Version>
     </PackageReference>
