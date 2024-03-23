@@ -37,26 +37,40 @@ namespace GuardkeyV01.Views
             BindingContext = viewModel;
             record = viewModel.Note; 
         }
-
         private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             if (filterOptionsPicker.SelectedItem != null)
             {
-               
                 if (Record == null)
                 {
                     Record = new Note();
                 }
-                if (Record.Categories == null)
-                {
-                    Record.Categories = new List<Category>(); 
-                }
 
-              
-                Category selectedCategory = new Category { CategoryName = filterOptionsPicker.SelectedItem.ToString() };
-
-                Record.Categories.Add(selectedCategory);
+                // Update the Categories property of the Note object
+                Record.Categories = filterOptionsPicker.SelectedItem.ToString();
             }
         }
+
+
+        //private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (filterOptionsPicker.SelectedItem != null)
+        //    {
+
+        //        if (Record == null)
+        //        {
+        //            Record = new Note();
+        //        }
+        //        if (Record.Categories == null)
+        //        {
+        //            Record.Categories = new List<Category>(); 
+        //        }
+
+
+        //        Category selectedCategory = new Category { CategoryName = filterOptionsPicker.SelectedItem.ToString() };
+
+        //        Record.Categories.Add(selectedCategory);
+        //    }
+        //}
     }
 }

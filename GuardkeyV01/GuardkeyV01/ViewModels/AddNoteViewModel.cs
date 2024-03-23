@@ -14,6 +14,8 @@ namespace GuardkeyV01.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
+
+
         private ObservableCollection<string> _filterOptions;
 
         public ObservableCollection<string> FilterOptions
@@ -31,6 +33,24 @@ namespace GuardkeyV01.ViewModels
             // Initialize the FilterOptions once the categories are retrieved
             FilterOptions = new ObservableCollection<string>(categories);
         }
+
+        //private ObservableCollection<string> _filterOptions;
+
+        //public ObservableCollection<string> FilterOptions
+        //{
+        //    get => _filterOptions;
+        //    set => SetProperty(ref _filterOptions, value);
+        //}
+
+
+        //private async void InitializeFilterOptionsAsync()
+        //{
+        //    // GetCategoriesAsync is asynchronous, so use await
+        //    var categories = await App.categoryService.GetAllByCategoriesNameAsync();
+
+        //    // Initialize the FilterOptions once the categories are retrieved
+        //    FilterOptions = new ObservableCollection<string>(categories);
+        //}
         public AddNoteViewModel()
         {
             InitializeFilterOptionsAsync();

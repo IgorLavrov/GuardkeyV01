@@ -21,8 +21,9 @@ namespace GuardkeyV01.Models
 
         public string Description { get; set; }
 
-        [Ignore] // Ignore this property for database mapping
-        public ICollection<Category> Categories { get; set; }
+        //[Ignore] // Ignore this property for database mapping
+        //public ICollection<Category> Categories { get; set; }
 
+        public string Categories { get; set; }
     }
 }

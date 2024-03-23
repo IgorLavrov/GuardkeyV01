@@ -301,7 +301,7 @@ namespace GuardkeyV01.ViewModels
 
             await Navigation.PushAsync(new AddNote(record));
         }
-
+      
 
         private async void OnAddUserRecord(object obj)
         {
