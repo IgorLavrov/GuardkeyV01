@@ -19,6 +19,7 @@ namespace GuardkeyV01
             Routing.RegisterRoute(nameof(AddCategory), typeof(AddCategory));
             Routing.RegisterRoute(nameof(AddNote), typeof(AddNote));
             Routing.RegisterRoute(nameof(NotePage), typeof(NotePage));
+            Routing.RegisterRoute(nameof(CopyDatabase), typeof(CopyDatabase));
         }
     
 
