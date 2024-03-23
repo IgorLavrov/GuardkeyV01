@@ -38,6 +38,7 @@ namespace GuardkeyV01.Views
 
            this.BindingContext = userRecordViewModel;
         }
+
         //public NotePage(Category selectedCategory)
         //{
         //    this.selectedCategory = selectedCategory;

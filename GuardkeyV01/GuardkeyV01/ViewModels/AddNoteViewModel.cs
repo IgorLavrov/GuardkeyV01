@@ -69,15 +69,16 @@ namespace GuardkeyV01.ViewModels
             var record = Note;
             await App.NoteService.AddUserRecordAsync(record);
 
-           
-            
-                await Shell.Current.GoToAsync($"//{nameof(NotePage)}");
+            Note = new Note();
+
+            await Shell.Current.GoToAsync($"//{nameof(NotePage)}");
 
         }
 
         private async void OnCancel()
         {
-          
+            Note = new Note();
+
             await Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
 
 

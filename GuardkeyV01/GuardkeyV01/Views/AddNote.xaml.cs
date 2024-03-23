@@ -21,35 +21,52 @@ namespace GuardkeyV01.Views
             InitializeComponent();
             viewModel = new AddNoteViewModel();
             BindingContext = viewModel;
-            Record= viewModel.Note; 
+            //Record= viewModel.Note; 
         }
-
-        public AddNote(Note record)
+        public AddNote(Note record) : this() // Call the default constructor to initialize the view model
         {
-            InitializeComponent();
-            viewModel = new AddNoteViewModel();
-
             if (record != null)
             {
                 viewModel.Note = record;
             }
-
-            BindingContext = viewModel;
-            record = viewModel.Note; 
         }
+
         private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             if (filterOptionsPicker.SelectedItem != null)
             {
-                if (Record == null)
-                {
-                    Record = new Note();
-                }
-
                 // Update the Categories property of the Note object
-                Record.Categories = filterOptionsPicker.SelectedItem.ToString();
+                viewModel.Note.Categories = filterOptionsPicker.SelectedItem.ToString();
             }
         }
+
+        //public AddNote(Note record)
+        //{
+        //    InitializeComponent();
+        //    viewModel = new AddNoteViewModel();
+
+        //    if (record != null)
+        //    {
+        //        viewModel.Note = record;
+        //    }
+
+        //    BindingContext = viewModel;
+        //    record= viewModel.Note;
+        //}
+
+        //private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (filterOptionsPicker.SelectedItem != null)
+        //    {
+        //        if (Record == null)
+        //        {
+        //            Record = new Note();
+        //        }
+
+        //        // Update the Categories property of the Note object
+        //        Record.Categories = filterOptionsPicker.SelectedItem.ToString();
+        //    }
+        //}
 
 
         //private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +80,7 @@ namespace GuardkeyV01.Views
         //        }
         //        if (Record.Categories == null)
         //        {
-        //            Record.Categories = new List<Category>(); 
+        //            Record.Categories = new List<Category>();
         //        }
 
 

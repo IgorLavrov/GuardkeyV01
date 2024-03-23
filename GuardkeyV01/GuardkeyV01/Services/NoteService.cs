@@ -69,10 +69,8 @@ namespace GuardkeyV01.Services
 
         public async Task<List<Note>> SortRecordByPicker(string name)
         {
-            // Get all notes from the database
             var allNotes = await _database.Table<Note>().ToListAsync();
 
-            // Filter notes based on the category name
             var filteredNotes = allNotes.Where(note => note.Categories == name);
 
             return filteredNotes.ToList();

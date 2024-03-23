@@ -122,7 +122,7 @@ namespace GuardkeyV01.ViewModels
             {
                 IEnumerable<Note> prodlist;
 
-                if (SelectedCategory == null || SelectedCategory.CategoryName == "All")
+                if (SelectedCategory == null || SelectedCategory.CategoryName == "ALL")
                 {
                     // Load all records
                     prodlist = await App.NoteService.GetUserRecordsAsync();
