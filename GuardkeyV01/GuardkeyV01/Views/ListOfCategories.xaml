@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GuardkeyV01.Views.ListOfCategories"
+            
              BackgroundImageSource="background.png"
              Title="{Binding SelectedItem, StringFormat='{0}'}"
              Shell.TabBarIsVisible="False">
@@ -41,9 +42,19 @@
                   SeparatorColor="Red" SelectionMode="Single">
             <ListView.Behaviors>
                 <xct:EventToCommandBehavior EventName="ItemTapped"
+                                    Command="{Binding OpenCategoryPageCommand}"
+                                    CommandParameter="{Binding SelectedItem, Source={x:Reference TaskList}}" />
+            </ListView.Behaviors>
+            <!--<ListView.Behaviors>
+                <xct:EventToCommandBehavior EventName="ItemTapped"
                                             Command="{Binding OpenCategoryPageCommand}"
                                             CommandParameter="{Binding .}" />
-            </ListView.Behaviors>
+            </ListView.Behaviors>-->
+            <!--<ListView.Behaviors>
+                <xct:EventToCommandBehavior EventName="ItemTapped"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ListOfCategoriesViewModel}},Path=OpenCategoryPageCommand}"
+                                CommandParameter="{Binding .}" />
+            </ListView.Behaviors>-->
 
             <ListView.ItemTemplate>
                 <DataTemplate>

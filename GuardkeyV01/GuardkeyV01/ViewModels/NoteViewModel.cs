@@ -88,34 +88,22 @@ namespace GuardkeyV01.ViewModels
                     selectedCategory = value;
                     OnPropertyChanged(nameof(SelectedCategory));
                     FilterItemsAsync(value);
+                    
+                    //FilterItemsAsync(value);
                 }
             }
         }
 
-        async Task FilterItemsAsync(Category selectedCategory)
+        public async Task FilterItemsAsync(Category selectedCategory)
         {
             try
             {
                 IsBusy = true;
 
-                if (selectedCategory?.CategoryName == "All") // Check the Name property of SelectedCategory
-                {
-                    // Load all records
-                    await ExecuteLoadUserRecordCommand();
-                }
-                else
-                {
-                    // Filter records based on the selected category name
-                    IEnumerable<Note> filteredRecords;
-                    filteredRecords = await App.NoteService.SortRecordByPicker(selectedCategory.CategoryName); // Pass the category name
+                SelectedCategory = selectedCategory; // Update the SelectedCategory property
 
-                    // Clear the existing records and add the filtered ones
-                    Notes.Clear();
-                    foreach (var record in filteredRecords)
-                    {
-                        Notes.Add(record);
-                    }
-                }
+                // Load records based on the selected category
+                await ExecuteLoadUserRecordCommand();
             }
             catch (Exception ex)
             {
@@ -127,8 +115,48 @@ namespace GuardkeyV01.ViewModels
             }
         }
 
+        async Task ExecuteLoadUserRecordCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                IEnumerable<Note> prodlist;
 
+                if (SelectedCategory == null || SelectedCategory.CategoryName == "All")
+                {
+                    // Load all records
+                    prodlist = await App.NoteService.GetUserRecordsAsync();
+                }
+                else
+                {
+                    // Load records based on the selected category name
+                    prodlist = await App.NoteService.SortRecordByPicker(SelectedCategory.CategoryName);
+                }
 
+                // Update UserRecords with the loaded records
+                Notes.Clear();
+                foreach (var prod in prodlist)
+                {
+                    Notes.Add(prod);
+                }
+
+                // Group the user records
+                //var groupedRecords = Notes
+                //    .GroupBy(record => record.SourceGroupName)
+                //    .Select(group => new GroupedUserRecord(group.Key, group.ToList()));
+
+                //// Update GroupedUserRecords with the grouped records
+                //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>(groupedRecords);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
 
 
@@ -281,43 +309,44 @@ namespace GuardkeyV01.ViewModels
             //await Application.Current.MainPage.Navigation.PushAsync(new AddUserRecordPage());
         }
 
+
         public void OnAppearing()
         {
             IsBusy = true;
         }
 
 
-        async Task ExecuteLoadUserRecordCommand()
-        {
-            IsBusy = true;
-            try
-            {
-                var prodlist = await App.NoteService.GetUserRecordsAsync();
+        //async Task ExecuteLoadUserRecordCommand()
+        //{
+        //    IsBusy = true;
+        //    try
+        //    {
+        //        var prodlist = await App.NoteService.GetUserRecordsAsync();
 
-                // Update UserRecords with the loaded records
-                Notes.Clear();
-                foreach (var prod in prodlist)
-                {
-                    Notes.Add(prod);
-                }
+        //        // Update UserRecords with the loaded records
+        //        Notes.Clear();
+        //        foreach (var prod in prodlist)
+        //        {
+        //            Notes.Add(prod);
+        //        }
 
-                // Group the user records
-                //var groupedRecords = Notes
-                //    .GroupBy(record => record.SourceGroupName)
-                //    .Select(group => new GroupedUserRecord(group.Key, group.ToList()));
+        //        // Group the user records
+        //        //var groupedRecords = Notes
+        //        //    .GroupBy(record => record.SourceGroupName)
+        //        //    .Select(group => new GroupedUserRecord(group.Key, group.ToList()));
 
-                //// Update GroupedUserRecords with the grouped records
-                //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>(groupedRecords);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        //        //// Update GroupedUserRecords with the grouped records
+        //        //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>(groupedRecords);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex);
+        //    }
+        //    finally
+        //    {
+        //        IsBusy = false;
+        //    }
+        //}
 
 
 

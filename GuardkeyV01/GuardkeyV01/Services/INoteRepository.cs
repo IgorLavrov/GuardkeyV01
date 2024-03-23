@@ -19,7 +19,7 @@ namespace GuardkeyV01.Services
 
         Task<IEnumerable<Note>> SortRecord(string name);
 
-        Task<IEnumerable<Note>> SortRecordByPicker(string name);
+        Task<List<Note>> SortRecordByPicker(string name);
 
 
 

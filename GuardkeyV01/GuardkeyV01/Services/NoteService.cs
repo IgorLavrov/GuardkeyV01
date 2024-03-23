@@ -47,12 +47,24 @@ namespace GuardkeyV01.Services
     .ToListAsync();
         }
 
-        public async Task<IEnumerable<Note>> SortRecordByPicker(string name)
+        public async Task<List<Note>> SortRecordByPicker(string name)
         {
+            // Get all notes from the database
+            var allNotes = await _database.Table<Note>().ToListAsync();
 
-            return await _database.Table<Note>().Where(value => value.Categories.Equals(name))
-   .ToListAsync();
+            // Filter notes based on the category name
+            var filteredNotes = allNotes.Where(note => note.Categories.Any(category => category.CategoryName == name));
+
+            return filteredNotes.ToList();
         }
+
+
+        //     public async Task<List<Note>> SortRecordByPicker(string name)
+        //     {
+
+        //         return await _database.Table<Note>().Where(value => value.Categories.Equals(name))
+        //.ToListAsync();
+        //     }
 
         public async Task<IEnumerable<Note>> GetUserRecordsAsync()
         {

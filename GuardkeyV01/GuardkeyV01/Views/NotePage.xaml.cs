@@ -16,6 +16,8 @@ namespace GuardkeyV01.Views
     {
 
         NoteViewModel userRecordViewModel;
+        //private Category selectedCategory;
+
         public NotePage()
         {
 
@@ -23,14 +25,31 @@ namespace GuardkeyV01.Views
             BindingContext = userRecordViewModel = new NoteViewModel(Navigation);
 
         }
+        public NotePage(Category selectedCategory )
+        {
+            InitializeComponent();
+            userRecordViewModel = new NoteViewModel(Navigation);
 
+            // If a selected category is provided, set it in the view model
+            if (selectedCategory != null)
+            {
+                userRecordViewModel.SelectedCategory = selectedCategory;
+            }
+
+           this.BindingContext = userRecordViewModel;
+        }
+        //public NotePage(Category selectedCategory)
+        //{
+        //    this.selectedCategory = selectedCategory;
+        //}
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-         
+            //userRecordViewModel.FilterItemsAsync(selectedCategory);
             userRecordViewModel.RefreshFilterOptionsAsync();
             userRecordViewModel.OnAppearing();
+         
         }
 
     }
