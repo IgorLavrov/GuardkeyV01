@@ -88,8 +88,9 @@
             <ShellContent Icon="icon_about.png" Route="AddCategory" ContentTemplate="{DataTemplate local:AddCategory}" />
     </FlyoutItem>
 
+ 
     <FlyoutItem Title="Add New Record" Icon="icon_feed.png">
-        <ShellContent  Route="AddNote" ContentTemplate="{DataTemplate local:AddNote}"/>
+        <ShellContent Route="AddNote" ContentTemplate="{DataTemplate local:AddNote}" />
     </FlyoutItem>
     
     <FlyoutItem Title="List of Record" Icon="icon_feed.png">
@@ -102,6 +103,7 @@
 
     <MenuItem Text="Help" IconImageSource="help.png" Command="{Binding HelpCommand}">
     </MenuItem>
+    
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem> 
   

@@ -1,4 +1,5 @@
 ﻿
+using GuardkeyV01.ViewModels;
 using GuardkeyV01.Views;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,14 @@ namespace GuardkeyV01
             Routing.RegisterRoute(nameof(AddNote), typeof(AddNote));
             Routing.RegisterRoute(nameof(NotePage), typeof(NotePage));
             Routing.RegisterRoute(nameof(CopyDatabase), typeof(CopyDatabase));
+
+
+            
+
         }
-    
+
+
+
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
@@ -34,6 +41,10 @@ namespace GuardkeyV01
                 await Browser.OpenAsync(url,BrowserLaunchMode.SystemPreferred);
             });
 
-    
+
+        
+
+
+
     }
 }

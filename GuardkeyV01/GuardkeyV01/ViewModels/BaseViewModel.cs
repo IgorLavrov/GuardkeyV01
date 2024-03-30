@@ -21,9 +21,9 @@ namespace GuardkeyV01.ViewModels
 
         }
 
-       
 
-       
+
+
         bool isBusy = false;
 
 
@@ -56,5 +56,7 @@ namespace GuardkeyV01.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }

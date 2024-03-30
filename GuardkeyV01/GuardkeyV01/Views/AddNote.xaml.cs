@@ -31,6 +31,12 @@ namespace GuardkeyV01.Views
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            (BindingContext as AddNoteViewModel)?.InitializeFilterOptionsAsync();
+        }
+
         private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
         {
             if (filterOptionsPicker.SelectedItem != null)

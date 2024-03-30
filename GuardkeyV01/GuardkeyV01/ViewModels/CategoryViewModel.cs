@@ -54,22 +54,22 @@ namespace GuardkeyV01.ViewModels
             List<string> categoriesNames = new List<string>();
             categoriesNames = await App.categoryService.GetAllByCategoriesNameAsync();
 
-            
-                foreach (var item in categoriesNames)
+
+            foreach (var item in categoriesNames)
+            {
+                if (item == CategoryName)
                 {
-                    if (item == CategoryName)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already existed.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Cannot Add", "Such category already existed.", "OK");
                     CategoryName = string.Empty;
                 }
-                }
+            }
 
             if (!string.IsNullOrWhiteSpace(CategoryName))
             {
-            var newCategory = new Category { CategoryName = CategoryName };
-            await App.categoryService.SaveCategoriesAsync(newCategory);
-            GetCategories();
-            CategoryName = string.Empty; // Clear the entry after adding
+                var newCategory = new Category { CategoryName = CategoryName };
+                await App.categoryService.SaveCategoriesAsync(newCategory);
+                GetCategories();
+                CategoryName = string.Empty; // Clear the entry after adding
             }
         }
 
@@ -87,5 +87,4 @@ namespace GuardkeyV01.ViewModels
         }
     }
 }
-
 
