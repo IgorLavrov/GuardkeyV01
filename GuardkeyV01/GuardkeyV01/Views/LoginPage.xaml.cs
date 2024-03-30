@@ -16,6 +16,7 @@ namespace GuardkeyV01.Views
         public LoginPage()
         {
             InitializeComponent();
+            Shell.SetNavBarIsVisible(this, false);
             Wire1UpEvents();
 
         }

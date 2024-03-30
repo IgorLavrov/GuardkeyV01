@@ -100,7 +100,7 @@
         <ShellContent  Route="CopyDatabase" ContentTemplate="{DataTemplate local:CopyDatabase}"/>
     </FlyoutItem>
 
-    <MenuItem Text="Help" IconImageSource="edit.png" Command="{Binding HelpCommand}">
+    <MenuItem Text="Help" IconImageSource="help.png" Command="{Binding HelpCommand}">
     </MenuItem>
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem> 

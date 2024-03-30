@@ -41,7 +41,7 @@ namespace GuardkeyV01.Views
                 string sourcePath = fileData.FilePath;
 
                 // Set the destination file path in the Downloads directory
-                string destinationFilePath = Path.Combine(FileSystem.CacheDirectory, "GuardKey.db3");
+                string destinationFilePath = Path.Combine(FileSystem.CacheDirectory, "GuardKey");
 
                 // Copy the database file to the destination path
                 File.Copy(sourcePath, destinationFilePath, true);

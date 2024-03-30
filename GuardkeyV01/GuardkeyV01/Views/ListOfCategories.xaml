@@ -70,7 +70,7 @@
                             <!-- Label -->
                             <Label Grid.Column="1" TextColor="White" FontAttributes="Bold" TextTransform="Uppercase" Text="{Binding CategoryName}" VerticalOptions="Center"/>
                             <!-- Right Image (Delete Icon) -->
-                            <Image Grid.Column="2" Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
+                            <Image Grid.Column="2" Source="delete.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference Name=TaskList}}" CommandParameter="{Binding .}" />
                                 </Image.GestureRecognizers>
