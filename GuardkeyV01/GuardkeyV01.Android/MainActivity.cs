@@ -12,7 +12,7 @@ namespace GuardkeyV01.Droid
     //[Activity(Label = "GuardkeyV01", Icon = "@drawable/test", Theme = "@style/MainTheme.Splash", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.ScreenLayout)]
     // [Activity(Label = "GuardkeyV01", Theme = "@style/MainTheme", MainLauncher =true)]
 
-    [Activity(Label = "GuardkeyV01", Icon = "@drawable/test", MainLauncher = true, Theme = "@style/MainTheme.Launcher")]
+    [Activity(Label = "GuardkeyV01", Icon = "@drawable/test", MainLauncher = true, Theme = "@style/MainTheme.Launcher", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -33,6 +33,10 @@ namespace GuardkeyV01.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+        }
 
 
 
