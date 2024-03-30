@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="GuardkeyV01.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False"
              Shell.NavBarIsVisible="False">
 
     <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
