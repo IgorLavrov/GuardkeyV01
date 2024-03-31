@@ -1,5 +1,6 @@
 ﻿using GuardkeyV01.Models;
 using GuardkeyV01.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,6 +11,8 @@ namespace GuardkeyV01.ViewModels
     {
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+
+       
 
         private ObservableCollection<string> _filterOptions;
         public ObservableCollection<string> FilterOptions
@@ -60,8 +63,12 @@ namespace GuardkeyV01.ViewModels
             InitializeFilterOptionsAsync();
 
             // After cancelling, navigate back to the note list page
-            await Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
+            await Shell.Current.GoToAsync($"//ListOfCategories");
         }
+
+
+  
+
     }
 }
 

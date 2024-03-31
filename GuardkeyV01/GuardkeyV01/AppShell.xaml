@@ -100,6 +100,9 @@
     <FlyoutItem Title="Copy database" Icon="icon_feed.png">
         <ShellContent  Route="CopyDatabase" ContentTemplate="{DataTemplate local:CopyDatabase}"/>
     </FlyoutItem>
+    <FlyoutItem Title="View" IsVisible="False">
+        <ShellContent Route="ViewPage" ContentTemplate="{DataTemplate local:ViewPage}" />
+    </FlyoutItem>
 
     <MenuItem Text="Help" IconImageSource="help.png" Command="{Binding HelpCommand}">
     </MenuItem>

@@ -45,6 +45,10 @@ namespace GuardkeyV01.Views
                 viewModel.Note.Categories = filterOptionsPicker.SelectedItem.ToString();
             }
         }
+        private void OnShowPasswordChanged(object sender, CheckedChangedEventArgs e)
+        {
+            PasswordEntry.IsPassword = !e.Value;
+        }
 
         //public AddNote(Note record)
         //{

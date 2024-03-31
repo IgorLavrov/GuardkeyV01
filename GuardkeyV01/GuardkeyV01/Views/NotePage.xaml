@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:model="clr-namespace:GuardkeyV01.Models"
              x:Class="GuardkeyV01.Views.NotePage"
-             BackgroundImageSource="background.png">
+             BackgroundImageSource="background.png"
+              Shell.TabBarIsVisible="False">
 
     <ContentPage.Content>
         <ScrollView>
@@ -56,7 +57,23 @@
                                                                Text="{Binding ResourceName}" 
                                                                TextColor="White" ></Label>
                                                     </StackLayout>
-                                                    <StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                        <Image Source="update.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+                                                    Path=UserRecordTappedEdit}" CommandParameter="{Binding .}"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End" Margin="5,0,0,0">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+                                                    Path=ViewRecordTapped}" CommandParameter="{Binding .}"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </StackLayout>
+                                                    <!--<StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
                                                         <Image Source="update.png" Grid.Column="1" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
                                                             <Image.GestureRecognizers>
                                                                 <TapGestureRecognizer NumberOfTapsRequired="1"
@@ -64,7 +81,18 @@
                                                             Path=UserRecordTappedEdit}" CommandParameter=" {Binding .}"/>
                                                             </Image.GestureRecognizers>
                                                         </Image>
+                                                        
                                                     </StackLayout>
+                                                    <StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                        <Image Source="edit.png" Grid.Column="1" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+         Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+         Path=ViewRecordTapped}" CommandParameter=" {Binding .}"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+
+                                                    </StackLayout>-->
                                                 </StackLayout>
                                             </Frame>
                                         </Grid>

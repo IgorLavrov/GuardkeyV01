@@ -3,6 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuardkeyV01.Views.AddNote"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
+             Shell.PresentationMode="ModalAnimated "
+             Shell.TabBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <local:AddNoteViewModel/>
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" Spacing="5" Padding="15">
+
+            <!-- Frame to contain the content -->
+            <Frame CornerRadius="10" BorderColor="Gold" HasShadow="True" BackgroundColor="Transparent">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Picker -->
+                    <Picker Grid.Row="0"
+                            x:Name="filterOptionsPicker"
+                            ItemsSource="{Binding FilterOptions}" 
+                            SelectedItem="{Binding SelectedFilter}" 
+                            Title="Categories"
+                            TitleColor="White"
+                            TextColor="White"    
+                            SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"
+                            Margin="10"
+                            />
+
+                    <!-- Labels and Entries -->
+                    <Label Grid.Row="1" Text="Resource" TextColor="White" FontSize="Header"/>
+                    <Entry Grid.Row="2" Text="{Binding Note.ResourceName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write resource name" PlaceholderColor="White" />
+                    <Label Grid.Row="3" Text="Username" TextColor="White"/>
+                    <Entry Grid.Row="4" Text="{Binding Note.UserName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write username" PlaceholderColor="White"/>
+                    <Label Grid.Row="5" Text="Password" TextColor="White"/>
+                    <!--<Entry Grid.Row="6" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write password" PlaceholderColor="White"/>-->
+                    <Entry Grid.Row="6" x:Name="PasswordEntry" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write password" PlaceholderColor="White" IsPassword="True"/>
+                    <StackLayout Grid.Row="7" Orientation="Horizontal" VerticalOptions="Center">
+                        <CheckBox x:Name="ShowPasswordCheckBox" CheckedChanged="OnShowPasswordChanged" />
+                        <Label Text="Show Password" TextColor="White" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="8" >
+                        <Label Text="Description" TextColor="White" />
+                    <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="True" BackgroundColor="Transparent" >
+                        <Editor Text="{Binding Note.Description, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder="Write description" PlaceholderColor="White" HeightRequest="100" Margin="5"/>
+                    </Frame>
+        </StackLayout>
+        </Grid>
+            </Frame>
+
+            <!-- Buttons -->
+            <StackLayout Spacing="10" Margin="15,10,15,0">
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#007AFF" TextColor="White"/>
+            </StackLayout>
+           <StackLayout Spacing="10" Margin="15,10,15,0">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#FF3B30" TextColor="White"/>
+            </StackLayout>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuardkeyV01.Views.AddNote"
+             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              Shell.PresentationMode="ModalAnimated">
 
     <ContentPage.BindingContext>
@@ -39,7 +114,7 @@
         </StackLayout>
     </AbsoluteLayout>
 
-</ContentPage>
+</ContentPage>-->
 
 
 

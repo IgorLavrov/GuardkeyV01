@@ -14,11 +14,13 @@ namespace GuardkeyV01.ViewModels
 {
     public class NoteViewModel:BaseViewModel
     {
+
+        
         public Command LoadUserRecordCommand { get; }
         public Command AddUserRecordCommand { get; }
         public Command UserRecordTappedEdit { get; }
         public Command UserRecordTappedDelete { get; }
-
+        public Command ViewRecordTapped { get; }
         public Command ClearRecordCommand { get; }
 
         public Command SearchCommand { get; }
@@ -93,6 +95,7 @@ namespace GuardkeyV01.ViewModels
                 }
             }
         }
+
 
         public async Task FilterItemsAsync(Category selectedCategory)
         {
@@ -180,6 +183,7 @@ namespace GuardkeyV01.ViewModels
             Notes = new ObservableCollection<Note>();
             AddUserRecordCommand = new Command(OnAddUserRecord);
             UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
+            ViewRecordTapped = new Command<Note>(ViewUserRecord);
             //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>();
             UserRecordTappedDelete = new Command<Note>(OnDeleteUserRecord);
             ClearRecordCommand = new Command(ClearRecord);
@@ -190,10 +194,7 @@ namespace GuardkeyV01.ViewModels
 
         }
 
-        public NoteViewModel()
-        {
-
-        }
+      
 
         public async Task RefreshFilterOptionsAsync()
         {
@@ -301,7 +302,13 @@ namespace GuardkeyV01.ViewModels
 
             await Navigation.PushAsync(new AddNote(record));
         }
-      
+
+        private async void ViewUserRecord(Note record)
+        {
+
+            await Navigation.PushAsync(new ViewPage(record));
+        }
+
 
         private async void OnAddUserRecord(object obj)
         {
