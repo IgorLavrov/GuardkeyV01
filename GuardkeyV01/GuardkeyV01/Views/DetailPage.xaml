@@ -1,9 +1,8 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GuardkeyV01.Views.ViewPage"
+             x:Class="GuardkeyV01.Views.DetailPage"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
-             Shell.TabBarIsVisible="False"
-             Shell.NavBarIsVisible="False">
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.BindingContext>
         <local:AddNoteViewModel/>
@@ -56,9 +55,7 @@
             </Frame>
         </StackLayout>
 
-        <!-- Back Button -->
-        <Button Text="Back" Clicked="OnBackButtonClicked"
-                AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.95,-1,-1"/>
+        
     </AbsoluteLayout>
 </ContentPage>
 
@@ -75,22 +72,34 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        --><!-- Background Image --><!--
+        -->
+<!-- Background Image -->
+<!--
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
 
-        --><!-- Main Content StackLayout --><!--
+        -->
+<!-- Main Content StackLayout -->
+<!--
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,0.9" Spacing="15" Padding="20" >
             <Entry Text="{Binding Note.Categories, Mode=TwoWay}" FontSize="Medium" Placeholder="Categories"  TextColor="white"/>
-            --><!-- Resource Entry --><!--
+            -->
+<!-- Resource Entry -->
+<!--
             <Entry Text="{Binding Note.ResourceName, Mode=TwoWay}" FontSize="Medium" Placeholder="Resource Name"  TextColor="white"/>
 
-            --><!-- Username Entry --><!--
+            -->
+<!-- Username Entry -->
+<!--
             <Entry Text="{Binding Note.UserName, Mode=TwoWay}" FontSize="Medium" Placeholder="Username"  TextColor="White"/>
 
-            --><!-- Password Entry --><!--
+            -->
+<!-- Password Entry -->
+<!--
             <Entry x:Name="PasswordEntry" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Medium" Placeholder="Password" IsPassword="false" TextColor="White"/>
 
-            --><!-- Description Entry --><!--
+            -->
+<!-- Description Entry -->
+<!--
             <Editor Text="{Binding Note.Description, Mode=TwoWay}" FontSize="Medium" Placeholder="Description" HeightRequest="100" TextColor="White"/>
         </StackLayout>
 

@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:model="clr-namespace:GuardkeyV01.Models"
-             x:Class="GuardkeyV01.Views.NotePage"
+             x:Class="GuardkeyV01.Views.ListOfNotes"
              BackgroundImageSource="background.png"
               Shell.TabBarIsVisible="False">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-          
+
                 <SearchBar Placeholder="Search"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent" 
@@ -52,7 +52,11 @@
                                                    Opacity="0.97">
                                                 <StackLayout Orientation="Horizontal">
                                                     <StackLayout >
-                                                      
+                                                        <Label Grid.Row="1" 
+        Grid.Column="1" 
+        Text="{Binding Categories}" 
+        TextColor="White" ></Label>
+
                                                         <Label Grid.Row="1" 
                                                                Grid.Column="1" 
                                                                Text="{Binding ResourceName}" 
@@ -70,11 +74,11 @@
                                                             <Image.GestureRecognizers>
                                                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
-                                                    Path=ViewRecordTapped}" CommandParameter="{Binding .}"/>
+                                                    Path=ViewDetailTapped}" CommandParameter="{Binding .}"/>
                                                             </Image.GestureRecognizers>
                                                         </Image>
                                                     </StackLayout>
-                                              
+                                                 
                                                 </StackLayout>
                                             </Frame>
                                         </Grid>
@@ -95,7 +99,7 @@
                                        TextDecorations="Underline" Margin="10"/>
                             </StackLayout>
                         </CollectionView.Header>
-                  
+
                     </CollectionView>
                 </RefreshView>
             </StackLayout>

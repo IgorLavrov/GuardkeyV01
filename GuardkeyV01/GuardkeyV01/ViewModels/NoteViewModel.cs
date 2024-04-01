@@ -21,6 +21,7 @@ namespace GuardkeyV01.ViewModels
         public Command UserRecordTappedEdit { get; }
         public Command UserRecordTappedDelete { get; }
         public Command ViewRecordTapped { get; }
+        public Command ViewDetailTapped { get; }
         public Command ClearRecordCommand { get; }
 
         public Command SearchCommand { get; }
@@ -91,7 +92,7 @@ namespace GuardkeyV01.ViewModels
                     OnPropertyChanged(nameof(SelectedCategory));
                     FilterItemsAsync(value);
                     
-                    //FilterItemsAsync(value);
+                    
                 }
             }
         }
@@ -184,6 +185,7 @@ namespace GuardkeyV01.ViewModels
             AddUserRecordCommand = new Command(OnAddUserRecord);
             UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
             ViewRecordTapped = new Command<Note>(ViewUserRecord);
+            ViewDetailTapped = new Command<Note>(ViewDetailRecord);
             //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>();
             UserRecordTappedDelete = new Command<Note>(OnDeleteUserRecord);
             ClearRecordCommand = new Command(ClearRecord);
@@ -203,55 +205,6 @@ namespace GuardkeyV01.ViewModels
             OnPropertyChanged(nameof(FilterOptions));
         }
 
-
-        //string selectedFilter = "All";
-        //public string SelectedFilter
-        //{
-        //    get => selectedFilter;
-        //    set
-        //    {
-        //        if (SetProperty(ref selectedFilter, value))
-        //            FilterItemsAsync(value);
-        //    }
-        //}
-
-        //async Task FilterItemsAsync()
-        //{
-
-
-        //    try
-        //    {
-        //        IsBusy = true;
-
-        //        if (SelectedFilter == "All")
-        //        {
-        //            // Load all records
-        //            await ExecuteLoadUserRecordCommand();
-        //        }
-        //        else
-        //        {
-        //            IEnumerable<Note> filteredRecords;
-        //            // Filter records based on the selected option
-        //            filteredRecords = await App.NoteService.SortRecordByPicker(SelectedFilter);
-
-        //            // Clear the existing records and add the filtered ones
-        //            Notes.Clear();
-        //            foreach (var record in filteredRecords)
-        //            {
-        //                Notes.Add(record);
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex);
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
 
 
 
@@ -309,6 +262,11 @@ namespace GuardkeyV01.ViewModels
             await Navigation.PushAsync(new ViewPage(record));
         }
 
+        private async void ViewDetailRecord(Note record)
+        {
+
+            await Navigation.PushAsync(new DetailPage(record));
+        }
 
         private async void OnAddUserRecord(object obj)
         {

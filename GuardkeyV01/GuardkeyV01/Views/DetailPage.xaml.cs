@@ -1,25 +1,29 @@
 ﻿using GuardkeyV01.Models;
 using GuardkeyV01.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace GuardkeyV01.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewPage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class DetailPage : ContentPage
+	{
         public Note Record { get; set; }
         private AddNoteViewModel viewModel;
-        public ViewPage()
+        public DetailPage()
         {
             InitializeComponent();
             viewModel = new AddNoteViewModel();
             BindingContext = viewModel;
             //Record= viewModel.Note; 
         }
-        public ViewPage(Note record) : this() // Call the default constructor to initialize the view model
+        public DetailPage(Note record) : this() // Call the default constructor to initialize the view model
         {
             if (record != null)
             {
@@ -34,11 +38,6 @@ namespace GuardkeyV01.Views
         }
 
 
-        private  void OnBackButtonClicked(object sender, EventArgs e)
-        {
-           
-
-            Shell.Current.GoToAsync("//ListOfCategories");
-        }
+     
     }
 }

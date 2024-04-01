@@ -14,7 +14,7 @@
     </ContentPage.BindingContext>
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"  Command="{Binding AddRecordCommand}"/>
+        <ToolbarItem Text="Add Categories"  Command="{Binding AddRecordCommand}"/>
     </ContentPage.ToolbarItems>
 
 
@@ -45,16 +45,7 @@
                                     Command="{Binding OpenCategoryPageCommand}"
                                     CommandParameter="{Binding SelectedItem, Source={x:Reference TaskList}}" />
             </ListView.Behaviors>
-            <!--<ListView.Behaviors>
-                <xct:EventToCommandBehavior EventName="ItemTapped"
-                                            Command="{Binding OpenCategoryPageCommand}"
-                                            CommandParameter="{Binding .}" />
-            </ListView.Behaviors>-->
-            <!--<ListView.Behaviors>
-                <xct:EventToCommandBehavior EventName="ItemTapped"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ListOfCategoriesViewModel}},Path=OpenCategoryPageCommand}"
-                                CommandParameter="{Binding .}" />
-            </ListView.Behaviors>-->
+      
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -76,15 +67,7 @@
                                 </Image.GestureRecognizers>
                             </Image>
                         </Grid>
-                        <!--<StackLayout Orientation="Horizontal" Margin="25" BackgroundColor="Transparent">
-                            <Image Source="Ellipse1.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End"/>
-                            <Label TextColor="White" FontAttributes="Bold" TextTransform="Uppercase" Text="{Binding CategoryName}" VerticalOptions="CenterAndExpand"/>
-                            <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding DeleteCategoryCommand}" CommandParameter="{Binding .}" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                        </StackLayout>-->
+                      
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
