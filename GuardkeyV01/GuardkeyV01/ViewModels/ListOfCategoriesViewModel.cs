@@ -98,19 +98,6 @@ namespace GuardkeyV01.ViewModels
             }
         }
 
-        //private async void OpenCategoryPage(object obj)
-        //{
-        //    if (SelectedCategory != null)
-        //    {
-        //                await Shell.Current.GoToAsync($"//{nameof(NotePage)}?{nameof(SelectedCategory.CategoryName)}={Uri.EscapeDataString(SelectedCategory.CategoryName)}");
-
-        //        }
-
-
-        //    // Pass the selected category as a parameter while navigating to the NotePage
-        //    //    await Shell.Current.GoToAsync($"//{nameof(NotePage)}?selectedCategory={SelectedCategory.CategoryName}");
-        //    //}
-        //}
 
 
         private async void OnAddRecord(object obj)

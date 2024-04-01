@@ -22,6 +22,8 @@ namespace GuardkeyV01.ViewModels
         public Command UserRecordTappedDelete { get; }
         public Command ViewRecordTapped { get; }
         public Command ViewDetailTapped { get; }
+      
+      
         public Command ClearRecordCommand { get; }
 
         public Command SearchCommand { get; }
@@ -66,20 +68,6 @@ namespace GuardkeyV01.ViewModels
             }
         }
 
-        //private string selectedCategory;
-        //public string SelectedCategory
-        //{
-        //    get => selectedCategory;
-        //    set
-        //    {
-        //        if (selectedCategory != value)
-        //        {
-        //            selectedCategory = value;
-        //            OnPropertyChanged(nameof(SelectedCategory));
-        //            FilterItemsAsync();
-        //        }
-        //    }
-        //}
         private Category selectedCategory;
         public Category SelectedCategory
         {
@@ -104,9 +92,9 @@ namespace GuardkeyV01.ViewModels
             {
                 IsBusy = true;
 
-                SelectedCategory = selectedCategory; // Update the SelectedCategory property
+                SelectedCategory = selectedCategory; 
 
-                // Load records based on the selected category
+               
                 await ExecuteLoadUserRecordCommand();
             }
             catch (Exception ex)
@@ -128,16 +116,16 @@ namespace GuardkeyV01.ViewModels
 
                 if (SelectedCategory == null || SelectedCategory.CategoryName == "ALL")
                 {
-                    // Load all records
+                    
                     prodlist = await App.NoteService.GetUserRecordsAsync();
                 }
                 else
                 {
-                    // Load records based on the selected category name
+                   
                     prodlist = await App.NoteService.SortRecordByPicker(SelectedCategory.CategoryName);
                 }
 
-                // Update UserRecords with the loaded records
+               
                 Notes.Clear();
                 foreach (var prod in prodlist)
                 {
@@ -167,10 +155,10 @@ namespace GuardkeyV01.ViewModels
 
         private async void InitializeFilterOptionsAsync()
         {
-            // GetCategoriesAsync is asynchronous, so use await
+            
             var categories = await App.categoryService.GetAllByCategoriesNameAsync();
 
-            // Initialize the FilterOptions once the categories are retrieved
+           
             FilterOptions = new ObservableCollection<string>(categories);
         }
 
@@ -186,6 +174,7 @@ namespace GuardkeyV01.ViewModels
             UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
             ViewRecordTapped = new Command<Note>(ViewUserRecord);
             ViewDetailTapped = new Command<Note>(ViewDetailRecord);
+            
             //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>();
             UserRecordTappedDelete = new Command<Note>(OnDeleteUserRecord);
             ClearRecordCommand = new Command(ClearRecord);

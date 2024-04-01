@@ -103,8 +103,8 @@
     <FlyoutItem Title="view" Icon="icon_feed.png" IsVisible="False">
         <ShellContent  Route="ViewPage" ContentTemplate="{DataTemplate local:ViewPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Copy database" Icon="icon_feed.png">
-        <ShellContent  Route="CopyDatabase" ContentTemplate="{DataTemplate local:CopyDatabase}"/>
+    <FlyoutItem Title="Send" Icon="icon_feed.png">
+        <ShellContent  Route="ContactList" ContentTemplate="{DataTemplate local:ContactList}"/>
     </FlyoutItem>
 
     

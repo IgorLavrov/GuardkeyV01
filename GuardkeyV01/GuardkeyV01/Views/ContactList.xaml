@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:model="clr-namespace:GuardkeyV01.Models"
-             x:Class="GuardkeyV01.Views.ListOfNotes"
+             x:Class="GuardkeyV01.Views.ContactList"
              BackgroundImageSource="background.png"
               Shell.TabBarIsVisible="False">
 
@@ -21,8 +21,8 @@
                 <RefreshView x:DataType="local:NoteViewModel"
                          Command="{Binding LoadUserRecordCommand}"
                          IsRefreshing="{Binding IsBusy,Mode=OneWay}">
-                    <CollectionView ItemsSource="{Binding Notes}"
-                     SelectionMode="None">
+                    <CollectionView x:Name="myCollectionView" ItemsSource="{Binding Notes}"
+                     SelectionMode="Single">
                         <CollectionView.EmptyView>
                             <Label Text=" No record found !" 
                                    HorizontalOptions="Center" 
@@ -32,17 +32,9 @@
                         </CollectionView.EmptyView>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout x:DataType="model:Note">
-                                    <SwipeView>
-                                        <SwipeView.RightItems>
-                                            <SwipeItems>
-                                                <SwipeItem Text="Delete" 
-                                                           BackgroundColor="Red"  
-                                                           Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
-                                                    Path=UserRecordTappedDelete}" CommandParameter=" {Binding .}"/>
-                                                <SwipeItem IsDestructive="True" Text="Close" BackgroundColor="Green"/>
-                                            </SwipeItems>
-                                        </SwipeView.RightItems>
+                                <StackLayout x:DataType="model:Note" >
+                                   
+                                      
 
                                         <Grid>
                                             <Frame CornerRadius="10" 
@@ -62,31 +54,24 @@
                                                                Text="{Binding ResourceName}" 
                                                                TextColor="White" ></Label>
                                                         <Label Grid.Row="1" 
-       Grid.Column="1" 
-       Text="{Binding Description}" 
-       TextColor="White" ></Label>
+Grid.Column="1" 
+Text="{Binding Description}" 
+TextColor="White" ></Label>
+                                                        <Label Grid.Row="1" 
+Grid.Column="1" 
+Text="{Binding UserName}" 
+TextColor="White" ></Label>
+                                                        <Label Grid.Row="1" 
+Grid.Column="1" 
+Text="{Binding Password}" 
+TextColor="White" ></Label>
                                                     </StackLayout>
-                                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-                                                        <Image Source="update.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                   Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
-                                                    Path=UserRecordTappedEdit}" CommandParameter="{Binding .}"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
-                                                        <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End" Margin="5,0,0,0">
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                   Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
-                                                    Path=ViewDetailTapped}" CommandParameter="{Binding .}"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
-                                                    </StackLayout>
-                                                 
+                                                  
+
                                                 </StackLayout>
                                             </Frame>
                                         </Grid>
-                                    </SwipeView>
+                                    
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -96,11 +81,7 @@
                                        FontSize="Large" 
                                        TextColor="GhostWhite" 
                                        HorizontalOptions="Center"/>
-                                <Label Text="Swipe left to delete" 
-       FontSize="Small" 
-       TextColor="WhiteSmoke" 
-       HorizontalOptions="Center"
-                                       TextDecorations="Underline" Margin="10"/>
+                               
                             </StackLayout>
                         </CollectionView.Header>
 
@@ -110,3 +91,23 @@
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+
+
+
+
+
+
+
+
+
+
+<!--<StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                   
+                     <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End" Margin="5,0,0,0">
+                         <Image.GestureRecognizers>
+                             <TapGestureRecognizer NumberOfTapsRequired="1"
+Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
+                 Path=DetailTapped}" CommandParameter="{Binding .}"/>
+                         </Image.GestureRecognizers>
+                     </Image>
+                 </StackLayout>-->

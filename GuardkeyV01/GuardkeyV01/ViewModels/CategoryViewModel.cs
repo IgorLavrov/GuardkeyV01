@@ -70,13 +70,15 @@ namespace GuardkeyV01.ViewModels
                 await App.categoryService.SaveCategoriesAsync(newCategory);
                 GetCategories();
                 CategoryName = string.Empty; // Clear the entry after adding
+                Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
+                
             }
         }
 
         private void CancelExecute()
         {
             CategoryName = string.Empty;
-            Shell.Current.GoToAsync($"//{nameof(ListOfCategories)}");
+            Shell.Current.GoToAsync($"//ListOfCategories");
 
         }
 

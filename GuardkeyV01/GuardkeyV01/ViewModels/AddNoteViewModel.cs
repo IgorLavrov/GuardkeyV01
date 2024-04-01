@@ -42,11 +42,11 @@ namespace GuardkeyV01.ViewModels
             FilterOptions = new ObservableCollection<string>(categories);
         }
 
-        private async void OnSave()
+        private  void OnSave()
         {
 
             var record = Note;
-            await App.NoteService.AddUserRecordAsync(record);
+            App.NoteService.AddUserRecordAsync(record);
 
             Note = new Note();
             InitializeFilterOptionsAsync();
@@ -54,7 +54,7 @@ namespace GuardkeyV01.ViewModels
             // After saving the note, navigate back to the note list page
 
 
-            await Shell.Current.GoToAsync($"//{nameof(NotePage)}");
+            Shell.Current.GoToAsync($"//ListOfCategories");
         }
 
         private async void OnCancel()
