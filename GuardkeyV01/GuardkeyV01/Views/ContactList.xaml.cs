@@ -29,14 +29,15 @@ namespace GuardkeyV01.Views
         }
         private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
         {
+            myCollectionView.SelectionChanged -= OnItemSelected;
             // Check if any item is selected
             if (e.CurrentSelection.FirstOrDefault() is Note selectedNote)
             {
-                var message = $"Categories: {selectedNote.Categories}\n" +
-                              $"Resource Name: {selectedNote.ResourceName}\n" +
-                              $"Description: {selectedNote.Description}\n" +
-                              $"User Name: {selectedNote.UserName}\n" +
-                              $"Password: {selectedNote.Password}";
+                var message = $"Find your password \n" +
+                              $"For: {selectedNote.ResourceName}\n" +
+                              $"Username: {selectedNote.UserName}\n" +
+                              $"Password: {selectedNote.Password}" +
+                              $"Description: {selectedNote.Description}\n" ;
 
                 // Display action sheet and get the selected action
                 var action = await DisplayActionSheet("Send via", "Cancel", null, "SMS", "Email");
@@ -44,7 +45,7 @@ namespace GuardkeyV01.Views
                 switch (action)
                 {
                     case "SMS":
-                        string phoneNumber = await DisplayPromptAsync("Phone Number", "Enter phone number", "OK", "Cancel");
+                        string phoneNumber = await DisplayPromptAsync("Phone number", "Enter Phone number", "OK", "Cancel");
                         if (!string.IsNullOrEmpty(phoneNumber))
                             await SendSMS(phoneNumber, message);
                         break;
@@ -56,9 +57,18 @@ namespace GuardkeyV01.Views
                 }
 
                 // Deselect the item after handling
-                ((CollectionView)sender).SelectedItem = null;
+                //((CollectionView)sender).SelectedItem = null;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    ((CollectionView)sender).SelectedItem = null; // Deselect the item
+                });
+
+
             }
+            myCollectionView.SelectionChanged += OnItemSelected;
         }
+
+       
 
         private async Task SendSMS(string phoneNumber, string message)
         {
@@ -84,7 +94,7 @@ namespace GuardkeyV01.Views
         private async Task SendEmail(string emailAddress, string message)
         {
             string toEmail = emailAddress;
-            string emailSubject = await DisplayPromptAsync("Enter Email Address", "Please enter the email subject:", "OK", "Cancel", keyboard: Keyboard.Email, maxLength: 255);
+            string emailSubject = "Password";
             string emailBody = message;
 
             if (string.IsNullOrEmpty(toEmail))
@@ -112,8 +122,7 @@ namespace GuardkeyV01.Views
         {
             base.OnDisappearing();
 
-            // Unsubscribe from the event to avoid memory leaks
-            myCollectionView.SelectionChanged -= OnItemSelected;
+            //myCollectionView.SelectionChanged = OnItemSelected;
         }
     }
 }
