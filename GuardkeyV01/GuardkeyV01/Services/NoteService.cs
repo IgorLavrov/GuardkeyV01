@@ -31,24 +31,7 @@ namespace GuardkeyV01.Services
             return await Task.FromResult(true);
         }
 
-        //public async Task<List<string>> GetAllByCategoriesNameAsync()
-        //{
-        //    try
-        //    {
-        //        var notes = await _database.Table<Note>().ToListAsync();
-
-        //        // Use SelectMany to flatten the list of category names
-        //        var categoryNames = notes.SelectMany(note => note.Categories.Select(category => category.CategoryName)).ToList();
-
-        //        return categoryNames;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle any exceptions
-        //        Debug.WriteLine($"Error: {ex.Message}");
-        //        return new List<string>(); // Return an empty list in case of error
-        //    }
-        //}
+       
 
         public async Task<bool> DeleteUserRecordAsync(int id)
         {
@@ -77,12 +60,7 @@ namespace GuardkeyV01.Services
         }
 
 
-        //     public async Task<List<Note>> SortRecordByPicker(string name)
-        //     {
-
-        //         return await _database.Table<Note>().Where(value => value.Categories.Equals(name))
-        //.ToListAsync();
-        //     }
+     
 
         public async Task<IEnumerable<Note>> GetUserRecordsAsync()
         {

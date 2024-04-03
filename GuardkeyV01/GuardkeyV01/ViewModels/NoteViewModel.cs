@@ -43,19 +43,7 @@ namespace GuardkeyV01.ViewModels
         }
 
         public ObservableCollection<string> FilterOptions { get; set; }
-        //public string Key { get; set; }
-       
-
-        //private ObservableCollection<GroupedUserRecord> _groupedUserRecords;
-        //public ObservableCollection<GroupedUserRecord> GroupedUserRecords
-        //{
-        //    get { return _groupedUserRecords; }
-        //    set
-        //    {
-        //        _groupedUserRecords = value;
-        //        OnPropertyChanged(nameof(GroupedUserRecords));
-        //    }
-        //}
+        
 
         private ObservableCollection<Note> _note;
         public ObservableCollection<Note> Notes
@@ -132,13 +120,7 @@ namespace GuardkeyV01.ViewModels
                     Notes.Add(prod);
                 }
 
-                // Group the user records
-                //var groupedRecords = Notes
-                //    .GroupBy(record => record.SourceGroupName)
-                //    .Select(group => new GroupedUserRecord(group.Key, group.ToList()));
-
-                //// Update GroupedUserRecords with the grouped records
-                //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>(groupedRecords);
+               
             }
             catch (Exception ex)
             {
@@ -174,8 +156,7 @@ namespace GuardkeyV01.ViewModels
             UserRecordTappedEdit = new Command<Note>(OnEditUserRecord);
             ViewRecordTapped = new Command<Note>(ViewUserRecord);
             ViewDetailTapped = new Command<Note>(ViewDetailRecord);
-            
-            //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>();
+         
             UserRecordTappedDelete = new Command<Note>(OnDeleteUserRecord);
             ClearRecordCommand = new Command(ClearRecord);
             SearchCommand = new Command(ExecuteSearch);
@@ -260,7 +241,7 @@ namespace GuardkeyV01.ViewModels
         private async void OnAddUserRecord(object obj)
         {
             Shell.Current.GoToAsync(nameof(AddNote));
-            //await Application.Current.MainPage.Navigation.PushAsync(new AddUserRecordPage());
+          
         }
 
 
@@ -268,41 +249,6 @@ namespace GuardkeyV01.ViewModels
         {
             IsBusy = true;
         }
-
-
-        //async Task ExecuteLoadUserRecordCommand()
-        //{
-        //    IsBusy = true;
-        //    try
-        //    {
-        //        var prodlist = await App.NoteService.GetUserRecordsAsync();
-
-        //        // Update UserRecords with the loaded records
-        //        Notes.Clear();
-        //        foreach (var prod in prodlist)
-        //        {
-        //            Notes.Add(prod);
-        //        }
-
-        //        // Group the user records
-        //        //var groupedRecords = Notes
-        //        //    .GroupBy(record => record.SourceGroupName)
-        //        //    .Select(group => new GroupedUserRecord(group.Key, group.ToList()));
-
-        //        //// Update GroupedUserRecords with the grouped records
-        //        //GroupedUserRecords = new ObservableCollection<GroupedUserRecord>(groupedRecords);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex);
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
-
-
 
 
 

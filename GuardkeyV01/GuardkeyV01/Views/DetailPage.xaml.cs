@@ -21,9 +21,9 @@ namespace GuardkeyV01.Views
             InitializeComponent();
             viewModel = new AddNoteViewModel();
             BindingContext = viewModel;
-            //Record= viewModel.Note; 
+          
         }
-        public DetailPage(Note record) : this() // Call the default constructor to initialize the view model
+        public DetailPage(Note record) : this() 
         {
             if (record != null)
             {

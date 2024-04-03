@@ -14,7 +14,6 @@
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" Spacing="5" Padding="15">
 
-            <!-- Frame to contain the content -->
             <Frame CornerRadius="10" BorderColor="Gold" HasShadow="True" BackgroundColor="Transparent">
                 <Grid Padding="10">
                     <Grid.RowDefinitions>
@@ -28,7 +27,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Picker -->
+            
                     <Picker Grid.Row="0"
                             x:Name="filterOptionsPicker"
                             ItemsSource="{Binding FilterOptions}" 
@@ -40,13 +39,13 @@
                             Margin="10"
                             />
 
-                    <!-- Labels and Entries -->
+                  
                     <Label Grid.Row="1" Text="Resource" TextColor="White" FontSize="Header"/>
                     <Entry Grid.Row="2" Text="{Binding Note.ResourceName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write resource name" PlaceholderColor="White" />
                     <Label Grid.Row="3" Text="Username" TextColor="White"/>
                     <Entry Grid.Row="4" Text="{Binding Note.UserName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write username" PlaceholderColor="White"/>
                     <Label Grid.Row="5" Text="Password" TextColor="White"/>
-                    <!--<Entry Grid.Row="6" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write password" PlaceholderColor="White"/>-->
+                   
                     <Entry Grid.Row="6" x:Name="PasswordEntry" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write password" PlaceholderColor="White" IsPassword="True"/>
                     <StackLayout Grid.Row="7" Orientation="Horizontal" VerticalOptions="Center">
                         <CheckBox x:Name="ShowPasswordCheckBox" CheckedChanged="OnShowPasswordChanged" />
@@ -61,7 +60,7 @@
         </Grid>
             </Frame>
 
-            <!-- Buttons -->
+        
             <StackLayout Spacing="10" Margin="15,10,15,0">
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#007AFF" TextColor="White"/>
             </StackLayout>
@@ -72,51 +71,4 @@
     </AbsoluteLayout>
 
 </ContentPage>
-
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GuardkeyV01.Views.AddNote"
-             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
-             Shell.PresentationMode="ModalAnimated">
-
-    <ContentPage.BindingContext>
-        <local:AddNoteViewModel/>
-    </ContentPage.BindingContext>
-
-    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
-        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" Spacing="5" Padding="15">
-
-            <Picker x:Name="filterOptionsPicker"
-                ItemsSource="{Binding FilterOptions}" 
-                SelectedItem="{Binding SelectedFilter}" 
-                VerticalOptions="Center" 
-                HorizontalOptions="FillAndExpand" 
-                Title="Categories"
-                TitleColor="white"
-                TextColor="white"    
-                SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"
-                    Margin="10"/>
-            <Label Text="Resource" TextColor="White" />
-            <Entry Text="{Binding Note.ResourceName,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
-            <Label Text="Name" TextColor="White" />
-            <Entry Text="{Binding Note.UserName,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
-            <Label Text="Password" TextColor="White"/>
-            <Entry Text="{Binding Note.Password,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
-            <Label Text="Description" TextColor="White"/>
-            <Entry Text="{Binding Note.Description,Mode=TwoWay}" FontSize="Medium" TextColor="White"/>
-
-            <StackLayout>
-                <Button Text="Save"  Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-            </StackLayout>
-        </StackLayout>
-    </AbsoluteLayout>
-
-</ContentPage>-->
-
-
-
-
 

@@ -21,9 +21,9 @@ namespace GuardkeyV01.Views
             InitializeComponent();
             viewModel = new AddNoteViewModel();
             BindingContext = viewModel;
-            //Record= viewModel.Note; 
+            
         }
-        public AddNote(Note record) : this() // Call the default constructor to initialize the view model
+        public AddNote(Note record) : this() 
         {
             if (record != null)
             {
@@ -41,7 +41,7 @@ namespace GuardkeyV01.Views
         {
             if (filterOptionsPicker.SelectedItem != null)
             {
-                // Update the Categories property of the Note object
+               
                 viewModel.Note.Categories = filterOptionsPicker.SelectedItem.ToString();
             }
         }
@@ -50,54 +50,6 @@ namespace GuardkeyV01.Views
             PasswordEntry.IsPassword = !e.Value;
         }
 
-        //public AddNote(Note record)
-        //{
-        //    InitializeComponent();
-        //    viewModel = new AddNoteViewModel();
-
-        //    if (record != null)
-        //    {
-        //        viewModel.Note = record;
-        //    }
-
-        //    BindingContext = viewModel;
-        //    record= viewModel.Note;
-        //}
-
-        //private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (filterOptionsPicker.SelectedItem != null)
-        //    {
-        //        if (Record == null)
-        //        {
-        //            Record = new Note();
-        //        }
-
-        //        // Update the Categories property of the Note object
-        //        Record.Categories = filterOptionsPicker.SelectedItem.ToString();
-        //    }
-        //}
-
-
-        //private void OnFilterOptionsPickerSelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (filterOptionsPicker.SelectedItem != null)
-        //    {
-
-        //        if (Record == null)
-        //        {
-        //            Record = new Note();
-        //        }
-        //        if (Record.Categories == null)
-        //        {
-        //            Record.Categories = new List<Category>();
-        //        }
-
-
-        //        Category selectedCategory = new Category { CategoryName = filterOptionsPicker.SelectedItem.ToString() };
-
-        //        Record.Categories.Add(selectedCategory);
-        //    }
-        //}
+       
     }
 }

@@ -23,7 +23,6 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Resource Name Entry -->
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Resource Name" FontSize="Medium" TextColor="White"/>
@@ -31,7 +30,7 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Username Entry -->
+         
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Username" FontSize="Medium" TextColor="White"/>
@@ -39,7 +38,6 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Password Entry -->
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Password" FontSize="Medium" TextColor="White"/>
@@ -47,7 +45,7 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Description Entry -->
+            
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Description" FontSize="Medium" TextColor="White"/>
@@ -56,49 +54,8 @@
             </Frame>
         </StackLayout>
 
-        <!-- Back Button -->
         <Button Text="Back" Clicked="OnBackButtonClicked"
                 AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.95,-1,-1"/>
     </AbsoluteLayout>
 </ContentPage>
 
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GuardkeyV01.Views.ViewPage"
-             xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
-            Shell.TabBarIsVisible="False"
-           Shell.NavBarIsVisible="False">
-
-    <ContentPage.BindingContext>
-        <local:AddNoteViewModel/>
-    </ContentPage.BindingContext>
-
-    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        --><!-- Background Image --><!--
-        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
-
-        --><!-- Main Content StackLayout --><!--
-        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,0.9" Spacing="15" Padding="20" >
-            <Entry Text="{Binding Note.Categories, Mode=TwoWay}" FontSize="Medium" Placeholder="Categories"  TextColor="white"/>
-            --><!-- Resource Entry --><!--
-            <Entry Text="{Binding Note.ResourceName, Mode=TwoWay}" FontSize="Medium" Placeholder="Resource Name"  TextColor="white"/>
-
-            --><!-- Username Entry --><!--
-            <Entry Text="{Binding Note.UserName, Mode=TwoWay}" FontSize="Medium" Placeholder="Username"  TextColor="White"/>
-
-            --><!-- Password Entry --><!--
-            <Entry x:Name="PasswordEntry" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Medium" Placeholder="Password" IsPassword="false" TextColor="White"/>
-
-            --><!-- Description Entry --><!--
-            <Editor Text="{Binding Note.Description, Mode=TwoWay}" FontSize="Medium" Placeholder="Description" HeightRequest="100" TextColor="White"/>
-        </StackLayout>
-
-
-        <Button Text="Back" Clicked="OnBackButtonClicked"
-        AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,0.95,-1,-1"/>
-    </AbsoluteLayout>
-
-</ContentPage>-->
-    
-  

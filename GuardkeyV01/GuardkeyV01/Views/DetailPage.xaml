@@ -9,12 +9,12 @@
     </ContentPage.BindingContext>
 
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <!-- Background Image -->
+     
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill" Opacity="10"/>
 
-        <!-- Main Content StackLayout -->
+
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,0.9" Spacing="15" Padding="20" >
-            <!-- Categories Entry -->
+        
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Categories" FontSize="Medium" TextColor="White"/>
@@ -22,7 +22,7 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Resource Name Entry -->
+  
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Resource Name" FontSize="Medium" TextColor="White"/>
@@ -30,7 +30,6 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Username Entry -->
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Username" FontSize="Medium" TextColor="White"/>
@@ -38,7 +37,6 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Password Entry -->
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Password" FontSize="Medium" TextColor="White"/>
@@ -46,7 +44,7 @@
                 </StackLayout>
             </Frame>
 
-            <!-- Description Entry -->
+        
             <Frame BackgroundColor="#40000000" CornerRadius="5" Padding="5">
                 <StackLayout>
                     <Label Text="Description" FontSize="Medium" TextColor="White"/>

@@ -100,14 +100,3 @@ TextColor="White" ></Label>
 
 
 
-
-<!--<StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-                   
-                     <Image Source="edit.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End" Margin="5,0,0,0">
-                         <Image.GestureRecognizers>
-                             <TapGestureRecognizer NumberOfTapsRequired="1"
-Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
-                 Path=DetailTapped}" CommandParameter="{Binding .}"/>
-                         </Image.GestureRecognizers>
-                     </Image>
-                 </StackLayout>-->

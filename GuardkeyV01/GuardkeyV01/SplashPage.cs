@@ -25,7 +25,7 @@ namespace GuardkeyV01
 
             sub.Children.Add(SplashImage);
 
-            //this.BackgroundColor = Color.FromHex("#27071D");
+           
             this.BackgroundImageSource = "background.png";
             this.Content = sub;
         }
@@ -38,9 +38,9 @@ namespace GuardkeyV01
             await SplashImage.ScaleTo(1, 2000);
             await SplashImage.ScaleTo(0.6, 1300, Easing.Linear);
             await SplashImage.ScaleTo(1.7, 2000, Easing.Linear);
-            //Shell.Current.GoToAsync(nameof(AppShell));
+           
             Application.Current.MainPage = new AppShell();
-            //Application.Current.MainPage = new NavigationPage(new AboutPage());
+            
 
         }
 

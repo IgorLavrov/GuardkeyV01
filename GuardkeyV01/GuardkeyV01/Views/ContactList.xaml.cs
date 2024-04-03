@@ -15,7 +15,7 @@ namespace GuardkeyV01.Views
 	public partial class ContactList : ContentPage
 	{
         NoteViewModel userRecordViewModel;
-        //private Category selectedCategory;
+    
 
         public ContactList()
         {
@@ -30,7 +30,7 @@ namespace GuardkeyV01.Views
         private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
         {
             myCollectionView.SelectionChanged -= OnItemSelected;
-            // Check if any item is selected
+            
             if (e.CurrentSelection.FirstOrDefault() is Note selectedNote)
             {
                 var message = $"Find your password \n" +
@@ -39,7 +39,7 @@ namespace GuardkeyV01.Views
                               $"Password: {selectedNote.Password}" +
                               $"Description: {selectedNote.Description}\n" ;
 
-                // Display action sheet and get the selected action
+               
                 var action = await DisplayActionSheet("Send via", "Cancel", null, "SMS", "Email");
 
                 switch (action)
@@ -56,11 +56,9 @@ namespace GuardkeyV01.Views
                         break;
                 }
 
-                // Deselect the item after handling
-                //((CollectionView)sender).SelectedItem = null;
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    ((CollectionView)sender).SelectedItem = null; // Deselect the item
+                    ((CollectionView)sender).SelectedItem = null; 
                 });
 
 
@@ -88,7 +86,7 @@ namespace GuardkeyV01.Views
             {
                 Device.OpenUri(new Uri($"sms:{smsPhoneNumber}?body={smsText}"));
             }
-            //await DisplayAlert("SMS Sent", $"Sending SMS to {phoneNumber}:\n\n{message}", "OK");
+            
         }
 
         private async Task SendEmail(string emailAddress, string message)
@@ -104,7 +102,7 @@ namespace GuardkeyV01.Views
 
             Device.OpenUri(new Uri($"mailto:{toEmail}?subject={emailSubject}&body={emailBody}"));
         }
-        //await DisplayAlert("Email Sent", $"Sending email to {emailAddress}:\n\n{message}", "OK");
+       
     
 
 
@@ -114,7 +112,7 @@ namespace GuardkeyV01.Views
             base.OnAppearing();
           
             userRecordViewModel.RefreshFilterOptionsAsync();
-            userRecordViewModel.OnAppearing();
+            userRecordViewModel.OnAppearing(); 
 
         }
 
@@ -122,7 +120,7 @@ namespace GuardkeyV01.Views
         {
             base.OnDisappearing();
 
-            //myCollectionView.SelectionChanged = OnItemSelected;
+            
         }
     }
 }
