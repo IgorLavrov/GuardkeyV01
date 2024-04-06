@@ -4,7 +4,6 @@
              xmlns:vm="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GuardkeyV01.Views.ListOfCategories"
-            
              BackgroundImageSource="background.png"
              Title="{Binding SelectedItem, StringFormat='{0}'}"
              Shell.TabBarIsVisible="False">

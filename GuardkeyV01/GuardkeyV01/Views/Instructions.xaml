@@ -1,12 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GuardkeyV01.Views.Instructions">
+             x:Class="GuardkeyV01.Views.Instructions"
+             BackgroundImageSource="background.png">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame BorderColor="#DAA520" BackgroundColor="#FFD700" CornerRadius="10" Padding="10" Margin="20">
+            <ScrollView>
+                <StackLayout Padding="20">
+                    <!-- Title -->
+                    <Label Text="GuardkeyV01 Software User Manual" FontSize="Title" HorizontalOptions="Center" Margin="0,20,0,10" TextColor="White" />
+
+                    
+                    <!-- Introduction -->
+                    <Label Text="Welcome to GuardkeyV01 software! This manual provides instructions on how to use the software effectively." Margin="0,0,0,20" />
+                    
+                    <Label Text="Navigating the App:" FontSize="Subtitle" Margin="0,0,0,10" />
+                    <Image Source="navigator.png" HeightRequest="250" WidthRequest="250" Margin="0,0,0,10" />
+                    <Label Text="To navigate through the app, follow these steps:" FontSize="Small" />
+                    <Label Text="1. Start by launching the GuardkeyV01 app on your device." FontSize="Small" />
+                    <Label Text="2. Once the app is launched, you will see the home screen with various options." FontSize="Small" />
+                    <Label Text="3. To access different features or sections of the app, tap on the corresponding buttons or tabs." FontSize="Small" />
+                    <Label Text="4. Use swipe gestures to navigate between different screens or pages within the app." FontSize="Small" />
+                    <Label Text="5. To go back to the previous screen or exit the app, use the back button on your device or the provided navigation controls." FontSize="Small" />
+
+                    <!-- Add Item Section -->
+                    <Label Text="Adding Items:" FontSize="Subtitle" Margin="0,0,0,10" />
+                    <!-- Add image -->
+                    <Image Source="AddScreenshot.png" HeightRequest="250" WidthRequest="250" Margin="0,0,0,10" />
+                    <Label Text="To add a new item, follow these steps:" FontSize="Small" />
+                    <!-- Add other steps -->
+
+                    <!-- Delete Item Section -->
+                    <Label Text="Deleting Items:" FontSize="Subtitle" Margin="0,20,0,10" />
+                    <!-- Add image -->
+                    <Image Source="DeleteScreen.png" HeightRequest="250" WidthRequest="250" Margin="0,0,0,10" />
+                    <Label Text="To delete an existing item, follow these steps:" FontSize="Small" />
+                    <!-- Add other steps -->
+
+                    <!-- Find Function Section -->
+                    <Label Text="Finding Content:" FontSize="Subtitle" Margin="0,20,0,10" />
+                    <Image Source="ListScreen.png" HeightRequest="250" WidthRequest="250" Margin="0,0,0,10" />
+                    <Label Text="To find specific content within the app, follow these steps:" FontSize="Small" />
+                    <!-- Add other steps -->
+
+                    <!-- Send To Section -->
+                    <Label Text="Sending Content:" FontSize="Subtitle" Margin="0,20,0,10" />
+                    <Image Source="SendScreen.png" HeightRequest="250" WidthRequest="250" Margin="0,0,0,10" />
+                    <Label Text="To send content to another user or device, follow these steps:" FontSize="Small" />
+                    <Label Text="1. Open the app and navigate to the content you want to send." FontSize="Small" />
+                    <Label Text="2. Look for the 'Send To' or 'Share' option on the screen." FontSize="Small" />
+                    <Label Text="3. Tap on the 'Send To' or 'Share' button to initiate the sharing process." FontSize="Small" />
+                    <Label Text="4. Choose the method of sending (e.g., email, message, social media)." FontSize="Small" />
+                    <Label Text="5. Follow the prompts to complete the sharing process." FontSize="Small" />
+
+                    <!-- Additional Instructions -->
+                    <Label Text="For additional assistance or troubleshooting, please refer to the Help section of the app or contact support." FontSize="Small" Margin="0,20,0,0" />
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

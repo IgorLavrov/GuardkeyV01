@@ -5,7 +5,8 @@
              xmlns:model="clr-namespace:GuardkeyV01.Models"
              x:Class="GuardkeyV01.Views.ContactList"
              BackgroundImageSource="background.png"
-              Shell.TabBarIsVisible="False">
+              Shell.TabBarIsVisible="False"
+              Title="Choose record">
 
     <ContentPage.Content>
         <ScrollView>

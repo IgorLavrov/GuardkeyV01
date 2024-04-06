@@ -23,7 +23,7 @@ namespace GuardkeyV01
             Routing.RegisterRoute(nameof(ContactList), typeof(ContactList));
             Routing.RegisterRoute(nameof(ViewPage), typeof(ViewPage));
             Routing.RegisterRoute(nameof(ListOfNotes), typeof(ListOfNotes));
-
+            Routing.RegisterRoute(nameof(Instructions), typeof(Instructions));
 
 
         }
@@ -35,6 +35,7 @@ namespace GuardkeyV01
         {
             await Shell.Current.GoToAsync("//LoginPage");
         }
+
 
         public ICommand HelpCommand => new Command(async () =>
             {
