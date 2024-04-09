@@ -109,15 +109,22 @@ namespace GuardkeyV01.ViewModels
         {
             if (obj is Category category)
             {
-                if (category.CategoryName != "All")
+                if (category.CategoryName != "ALL")
                 {
                     try
                     {
-                        
-                        await App.categoryService.DeleteCategoriesAsync(category);
+                        bool deleteConfirmed = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to delete this category?", "Yes", "No");
 
-                     
-                        CategoryList.Remove(category);
+                        if (deleteConfirmed)
+                        {
+                           
+                            await App.categoryService.DeleteCategoriesAsync(category);
+
+                           
+                            CategoryList.Remove(category);
+                        }
+
+                  
                     }
                     catch (Exception ex)
                     {

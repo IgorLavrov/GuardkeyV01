@@ -216,8 +216,24 @@ namespace GuardkeyV01.ViewModels
             {
                 return;
             }
-            await App.NoteService.DeleteUserRecordAsync(record.NoteId);
-            await ExecuteLoadUserRecordCommand();
+            bool deleteConfirmed = await Application.Current.MainPage.DisplayAlert("Confirmation", "Are you sure you want to delete this record?", "Yes", "No");
+
+            if (deleteConfirmed)
+            {
+                try
+                {
+                    
+                    await App.NoteService.DeleteUserRecordAsync(record.NoteId);
+
+                  
+                    await ExecuteLoadUserRecordCommand();
+                }
+                catch (Exception ex)
+                {
+                   
+                    await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete the record: {ex.Message}", "OK");
+                }
+            }
         }
 
         private async void OnEditUserRecord(Note record)
