@@ -5,6 +5,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GuardkeyV01.Views.ListOfCategories"
              BackgroundImageSource="background.png"
+                Shell.BackgroundColor=" #3C6666"
              Title="{Binding SelectedItem, StringFormat='{0}'}"
              Shell.TabBarIsVisible="False">
 

@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuardkeyV01.Views.DetailPage"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+                Shell.BackgroundColor=" #3C6666">
 
     <ContentPage.BindingContext>
         <local:AddNoteViewModel/>

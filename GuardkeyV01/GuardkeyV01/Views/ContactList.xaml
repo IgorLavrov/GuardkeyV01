@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              xmlns:model="clr-namespace:GuardkeyV01.Models"
              x:Class="GuardkeyV01.Views.ContactList"
+                Shell.BackgroundColor=" #3C6666"
              BackgroundImageSource="background.png"
               Shell.TabBarIsVisible="False"
               Title="Choose record">

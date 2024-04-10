@@ -4,6 +4,7 @@
              x:Class="GuardkeyV01.Views.AddNote"
              xmlns:local="clr-namespace:GuardkeyV01.ViewModels"
              Shell.PresentationMode="ModalAnimated "
+            Shell.BackgroundColor=" #3C6666"
              Shell.TabBarIsVisible="False"
               Title="Add new record">
 
@@ -63,10 +64,10 @@
 
         
             <StackLayout Spacing="10" Margin="15,10,15,0">
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#007AFF" TextColor="White"/>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
            <StackLayout Spacing="10" Margin="15,10,15,0">
-            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#FF3B30" TextColor="White"/>
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
         </StackLayout>
     </AbsoluteLayout>
