@@ -19,24 +19,24 @@ namespace GuardkeyV01.Services
         }
         private async Task InitializeDatabase()
         {
-           
-           await SeedCategoriesAsync();
+
+            await SeedCategoriesAsync();
         }
         private async Task SeedCategoriesAsync()
         {
             var existingCategories = await _database.Table<Category>().ToListAsync().ConfigureAwait(false);
 
-                if (existingCategories.Count == 0)
-                {
-                    var initialCategories = new List<Category>
+            if (existingCategories.Count == 0)
+            {
+                var initialCategories = new List<Category>
                     {
                     new Category { CategoryName = "ALL" },
                     new Category { CategoryName = "HOME" },
-                    new Category { CategoryName = "GROCERIES" }
+                    new Category { CategoryName = "FRIEND" }
                     };
 
-                    await _database.InsertAllAsync(initialCategories).ConfigureAwait(false);
-                }
+                await _database.InsertAllAsync(initialCategories).ConfigureAwait(false);
+            }
         }
         public async Task<List<string>> GetAllByCategoriesNameAsync()
         {
@@ -51,26 +51,26 @@ namespace GuardkeyV01.Services
         }
         public Task<Category> GetCategory(int id)
         {
-           return _database.Table<Category>().Where(c => c.Id == id).FirstOrDefaultAsync();
+            return _database.Table<Category>().Where(c => c.Id == id).FirstOrDefaultAsync();
         }
 
 
-            public Task<List<Category>> GetAllCategoriesAsync()
-            {
-                return _database.Table<Category>().ToListAsync();
-            }
+        public Task<List<Category>> GetAllCategoriesAsync()
+        {
+            return _database.Table<Category>().ToListAsync();
+        }
 
         public Task<List<Category>> FilterCategoriesAsync(string selectedFilter)
         {
             return _database.Table<Category>()
-                            .Where(c => c.CategoryName.ToLower()==selectedFilter.ToLower())
+                            .Where(c => c.CategoryName.ToLower() == selectedFilter.ToLower())
                             .ToListAsync();
         }
 
 
         public Task<int> SaveCategoriesAsync(Category category)
         {
-           
+
 
             return _database.InsertAsync(category);
         }

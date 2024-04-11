@@ -35,45 +35,45 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout x:DataType="model:Note" >
-                                   
-                                      
 
-                                        <Grid>
-                                            <Frame CornerRadius="10" 
+
+
+                                    <Grid>
+                                        <Frame CornerRadius="10" 
                                                    HasShadow="True"  
                                                    BorderColor="#BB2C7A"
                                                    BackgroundColor="#1C0D2A"
                                                    Opacity="0.97">
-                                                <StackLayout Orientation="Horizontal">
-                                                    <StackLayout >
-                                                        <Label Grid.Row="1" 
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout >
+                                                    <Label Grid.Row="1" 
         Grid.Column="1" 
         Text="{Binding Categories}" 
         TextColor="White" ></Label>
 
-                                                        <Label Grid.Row="1" 
+                                                    <Label Grid.Row="1" 
                                                                Grid.Column="1" 
                                                                Text="{Binding ResourceName}" 
                                                                TextColor="White" ></Label>
-                                                        <Label Grid.Row="1" 
+                                                    <Label Grid.Row="1" 
 Grid.Column="1" 
 Text="{Binding Description}" 
 TextColor="White" ></Label>
-                                                        <Label Grid.Row="1" 
+                                                    <Label Grid.Row="1" 
 Grid.Column="1" 
 Text="{Binding UserName}" 
 TextColor="White" ></Label>
-                                                        <Label Grid.Row="1" 
+                                                    <Label Grid.Row="1" 
 Grid.Column="1" 
 Text="{Binding Password}" 
 TextColor="White" ></Label>
-                                                    </StackLayout>
-                                                  
-
                                                 </StackLayout>
-                                            </Frame>
-                                        </Grid>
-                                    
+
+
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -83,7 +83,7 @@ TextColor="White" ></Label>
                                        FontSize="Large" 
                                        TextColor="GhostWhite" 
                                        HorizontalOptions="Center"/>
-                               
+
                             </StackLayout>
                         </CollectionView.Header>
 

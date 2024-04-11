@@ -29,7 +29,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-            
+
                     <Picker Grid.Row="0"
                             x:Name="filterOptionsPicker"
                             ItemsSource="{Binding FilterOptions}" 
@@ -41,13 +41,13 @@
                             Margin="10"
                             />
 
-                  
+
                     <Label Grid.Row="1" Text="Resource" TextColor="White" FontSize="Header"/>
                     <Entry Grid.Row="2" Text="{Binding Note.ResourceName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write resource name" PlaceholderColor="White" />
                     <Label Grid.Row="3" Text="Username" TextColor="White"/>
                     <Entry Grid.Row="4" Text="{Binding Note.UserName, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write username" PlaceholderColor="White"/>
                     <Label Grid.Row="5" Text="Password" TextColor="White"/>
-                   
+
                     <Entry Grid.Row="6" x:Name="PasswordEntry" Text="{Binding Note.Password, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder=" Write password" PlaceholderColor="White" IsPassword="True"/>
                     <StackLayout Grid.Row="7" Orientation="Horizontal" VerticalOptions="Center">
                         <CheckBox x:Name="ShowPasswordCheckBox" CheckedChanged="OnShowPasswordChanged" />
@@ -55,18 +55,18 @@
                     </StackLayout>
                     <StackLayout Grid.Row="8" >
                         <Label Text="Description" TextColor="White" />
-                    <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="True" BackgroundColor="Transparent" >
-                        <Editor Text="{Binding Note.Description, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder="Write description" PlaceholderColor="White" HeightRequest="100" Margin="5"/>
-                    </Frame>
-        </StackLayout>
-        </Grid>
+                        <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="True" BackgroundColor="Transparent" >
+                            <Editor Text="{Binding Note.Description, Mode=TwoWay}" FontSize="Small" TextColor="White" Placeholder="Write description" PlaceholderColor="White" HeightRequest="100" Margin="5"/>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
             </Frame>
 
-        
+
             <StackLayout Spacing="10" Margin="15,10,15,0">
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
-           <StackLayout Spacing="10" Margin="15,10,15,0">
+            <StackLayout Spacing="10" Margin="15,10,15,0">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
         </StackLayout>
