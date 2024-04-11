@@ -5,6 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              NavigationPage.HasNavigationBar="False"
              Shell.NavBarIsVisible="False">
 
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -20,13 +21,14 @@
                   
                 </Grid.RowDefinitions>
                 <StackLayout>
+                    <Image Grid.Row="1" Source="logologin.png" HorizontalOptions="Center"/>
                     <Label Text="Registration: Choose your password"
                            Margin="30"
                            FontSize="18" 
                            TextColor="#ffffff"
                            HorizontalOptions="Center"
                            BackgroundColor="Transparent"/>
-                    <StackLayout  Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <StackLayout  Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <Entry x:Name="Digit1" 
                                Placeholder="*" 
                                PlaceholderColor="#d9d9d9" 
@@ -65,7 +67,7 @@
                                BackgroundColor="Transparent"/>
                     </StackLayout>
                     
-                    <Image Grid.Row="4" Source="logologin.png" HorizontalOptions="Center"/>
+                   
                 </StackLayout>
             </Grid>
         </StackLayout>
