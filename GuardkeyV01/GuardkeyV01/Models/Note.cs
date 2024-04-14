@@ -21,8 +21,6 @@ namespace GuardkeyV01.Models
 
         public string Description { get; set; }
 
-
-
         public string Categories { get; set; }
     }
 }

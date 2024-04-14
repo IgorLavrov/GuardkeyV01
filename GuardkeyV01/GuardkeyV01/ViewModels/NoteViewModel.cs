@@ -133,8 +133,6 @@ namespace GuardkeyV01.ViewModels
         }
 
 
-
-
         private async void InitializeFilterOptionsAsync()
         {
             
@@ -143,8 +141,6 @@ namespace GuardkeyV01.ViewModels
            
             FilterOptions = new ObservableCollection<string>(categories);
         }
-
-
 
 
         public NoteViewModel(INavigation _navigation)
@@ -162,10 +158,7 @@ namespace GuardkeyV01.ViewModels
             SearchCommand = new Command(ExecuteSearch);
             Navigation = _navigation;
 
-
-
         }
-
       
 
         public async Task RefreshFilterOptionsAsync()
@@ -175,14 +168,21 @@ namespace GuardkeyV01.ViewModels
             OnPropertyChanged(nameof(FilterOptions));
         }
 
-
-
-
         private async void ExecuteSearch()
         {
             string searchText = SearchText;
 
             IEnumerable<Note> prodlist;
+
+            //if (string.IsNullOrWhiteSpace(searchText))
+            //{
+            //    prodlist = await App.NoteService.GetUserRecordsAsync();
+            //}
+            //else
+            //{
+
+            //    prodlist = await App.NoteService.SortRecord(searchText);
+            //}
 
 
             prodlist = await App.NoteService.SortRecord(searchText);
@@ -200,10 +200,6 @@ namespace GuardkeyV01.ViewModels
 
             OnPropertyChanged(nameof(Notes));
         }
-
-
-
-
 
         public void ClearRecord()
         {

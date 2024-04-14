@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuardkeyV01.Views.Instructions"
+              Shell.BackgroundColor=" #3C6666"
              BackgroundImageSource="background.png">
     <ContentPage.Content>
         <Frame BorderColor="#DAA520" BackgroundColor="#FFD700" CornerRadius="10" Padding="10" Margin="20">

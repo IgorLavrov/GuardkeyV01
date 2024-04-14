@@ -74,7 +74,7 @@
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <FlyoutItem Title=" Search by category" Icon="icon_feed.png">
+    <FlyoutItem Title=" Search by/Add category" Icon="icon_feed.png">
         <ShellContent Icon="icon_about.png" Route="ListOfCategories" ContentTemplate="{DataTemplate local:ListOfCategories}"/>
             <ShellContent Icon="icon_about.png" Route="AddCategory" ContentTemplate="{DataTemplate local:AddCategory}" />
     </FlyoutItem>

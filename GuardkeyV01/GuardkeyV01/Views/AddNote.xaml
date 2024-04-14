@@ -34,7 +34,7 @@
                             x:Name="filterOptionsPicker"
                             ItemsSource="{Binding FilterOptions}" 
                             SelectedItem="{Binding SelectedFilter}" 
-                            Title="Categories"
+                            Title="Choose category"
                             TitleColor="White"
                             TextColor="White"    
                             SelectedIndexChanged="OnFilterOptionsPickerSelectedIndexChanged"
