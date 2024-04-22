@@ -39,10 +39,10 @@ namespace GuardkeyV01.Views
         {
             string pin = $"{Digit1.Text}{Digit2.Text}{Digit3.Text}{Digit4.Text}";
 
-            // Save PIN to preferences
+           
             Preferences.Set("UserPIN", pin);
 
-            // Perform any additional logic with the entered PIN (e.g., authentication)
+            
             DisplayAlert("PIN Entered", $"You entered PIN: {pin}", "OK");
             Application.Current.MainPage = new NavigationPage(new SplashPage());
         }

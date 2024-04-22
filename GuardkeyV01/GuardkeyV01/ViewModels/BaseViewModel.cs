@@ -21,12 +21,7 @@ namespace GuardkeyV01.ViewModels
 
         }
 
-
-
-
         bool isBusy = false;
-
-
 
         public bool IsBusy
         {

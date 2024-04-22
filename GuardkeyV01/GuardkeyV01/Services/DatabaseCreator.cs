@@ -16,14 +16,11 @@ namespace GuardkeyV01.Services
         public DatabaseCreator(string dbPath)
         {
             
-           
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Note>().Wait();
             _database.CreateTableAsync<Category>().Wait();
 
         }
-
-       
 
         public SQLiteAsyncConnection GetConnection()
         {

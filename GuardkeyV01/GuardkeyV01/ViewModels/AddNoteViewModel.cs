@@ -13,8 +13,6 @@ namespace GuardkeyV01.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-
-
         private ObservableCollection<string> _filterOptions;
         public ObservableCollection<string> FilterOptions
         {

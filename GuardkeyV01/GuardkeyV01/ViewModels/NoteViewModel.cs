@@ -14,7 +14,6 @@ namespace GuardkeyV01.ViewModels
 {
     public class NoteViewModel:BaseViewModel
     {
-
         
         public Command LoadUserRecordCommand { get; }
         public Command AddUserRecordCommand { get; }
@@ -22,7 +21,6 @@ namespace GuardkeyV01.ViewModels
         public Command UserRecordTappedDelete { get; }
         public Command ViewRecordTapped { get; }
         public Command ViewDetailTapped { get; }
-      
       
         public Command ClearRecordCommand { get; }
 

@@ -31,19 +31,15 @@ namespace GuardkeyV01.Services
             return await Task.FromResult(true);
         }
 
-       
-
         public async Task<bool> DeleteUserRecordAsync(int id)
         {
             await _database.DeleteAsync<Note>(id);
             return await Task.FromResult(true);
         }
-
         public async Task<Note> GetUserRecordAsync(int id)
         {
             return await _database.Table<Note>().Where(p => p.NoteId == id).FirstOrDefaultAsync();
         }
-
         public async Task<IEnumerable<Note>> SortRecord(string name)
         {
             return await _database.Table<Note>().Where(value => value.ResourceName.ToLower().Contains(name.ToLower()))
@@ -59,16 +55,11 @@ namespace GuardkeyV01.Services
             return filteredNotes.ToList();
         }
 
-
-     
-
         public async Task<IEnumerable<Note>> GetUserRecordsAsync()
         {
             return await Task.FromResult(await _database.Table<Note>().ToListAsync());
 
-
         }
-
         public async Task<bool> UpdateUserRecordAsync(Note record)
         {
 

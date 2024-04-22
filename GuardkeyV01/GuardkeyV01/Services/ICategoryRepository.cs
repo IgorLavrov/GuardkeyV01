@@ -11,7 +11,6 @@ namespace GuardkeyV01.Services
 
         Task<IEnumerable<Category>> GetCategoriesAsync();
 
-
         Task<int> SaveCategoriesAsync(Category category);
 
         Task DeleteCategoriesAsync(Category category);
@@ -24,10 +23,6 @@ namespace GuardkeyV01.Services
         Task<List<Category>> GetAllCategoriesAsync();
 
         Task<List<Category>> FilterCategoriesAsync(string selectedFilter);
-
-      
-
-
 
     }
 }
