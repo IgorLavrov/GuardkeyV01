@@ -12,7 +12,7 @@
         <ScrollView>
             <StackLayout>
           
-                <SearchBar Placeholder="Search"
+                <SearchBar Placeholder="Search by resource"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent" 
                            TextColor="White" 

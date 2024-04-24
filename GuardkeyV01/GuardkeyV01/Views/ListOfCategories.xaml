@@ -20,14 +20,14 @@
 
     <StackLayout Margin="5,30,5,5">
         <StackLayout Orientation="Horizontal" Padding="10">
-            <Label Text="Filter" VerticalOptions="Center" TextColor="White" />
+            <Label Text="Filter by category" VerticalOptions="Center" TextColor="White" />
       
             <Picker ItemsSource="{Binding CategoryNames}"
         SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
         SelectedIndexChanged="Picker_SelectedIndexChanged"
         VerticalOptions="Center"
         HorizontalOptions="FillAndExpand"
-        TextColor="White">
+        TextColor="White" >
                 <Picker.ItemDisplayBinding>
                     <Binding />
                 </Picker.ItemDisplayBinding>

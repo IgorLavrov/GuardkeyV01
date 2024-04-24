@@ -12,7 +12,7 @@
         <ScrollView>
             <StackLayout>
 
-                <SearchBar Placeholder="Search"
+                <SearchBar Placeholder="Search by resource"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent" 
                            TextColor="White" 
@@ -53,29 +53,33 @@
                                                    Opacity="0.97">
                                                 <StackLayout Orientation="Horizontal">
                                                     <StackLayout >
-                                                        <Label Grid.Row="1" 
-        Grid.Column="1" 
-        Text="{Binding Categories}" 
-        TextColor="White" ></Label>
+                                                        <Label Text="Category:" 
+                   TextColor="White" 
+                   FontAttributes="Bold" />
+                                                        <Label Text="{Binding Categories}" 
+                   TextColor="White" />
 
-                                                        <Label Grid.Row="1" 
-                                                               Grid.Column="1" 
-                                                               Text="{Binding ResourceName}" 
-                                                               TextColor="White" ></Label>
-                                                        <Label Grid.Row="1" 
-       Grid.Column="1" 
-       Text="{Binding Description}" 
-       TextColor="White" ></Label>
+                                                        <Label Text="Resource Name:" 
+                   TextColor="White" 
+                   FontAttributes="Bold" />
+                                                        <Label Text="{Binding ResourceName}" 
+                   TextColor="White" />
+
+                                                        <Label Text="Description:" 
+                   TextColor="White" 
+                   FontAttributes="Bold" />
+                                                        <Label Text="{Binding Description}" 
+                   TextColor="White" />
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
-                                                        <Image Source="update.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                                        <Image Source="update.png" WidthRequest="50" HeightRequest="60" VerticalOptions="End">
                                                             <Image.GestureRecognizers>
                                                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},
                                                     Path=UserRecordTappedEdit}" CommandParameter="{Binding .}"/>
                                                             </Image.GestureRecognizers>
                                                         </Image>
-                                                        <Image Source="look.png" WidthRequest="30" HeightRequest="30" VerticalOptions="End" Margin="5,0,0,0">
+                                                        <Image Source="look.png" WidthRequest="50" HeightRequest="60" VerticalOptions="End" Margin="5,0,0,0">
                                                             <Image.GestureRecognizers>
                                                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:NoteViewModel}},

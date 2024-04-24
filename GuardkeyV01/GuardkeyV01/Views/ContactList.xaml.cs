@@ -33,10 +33,10 @@ namespace GuardkeyV01.Views
             
             if (e.CurrentSelection.FirstOrDefault() is Note selectedNote)
             {
-                var message = $"Find your password \n" +
+                var message = $"Here is your password \n" +
                               $"For: {selectedNote.ResourceName}\n" +
                               $"Username: {selectedNote.UserName}\n" +
-                              $"Password: {selectedNote.Password}" +
+                              $"Password: {selectedNote.Password}\n" +
                               $"Description: {selectedNote.Description}\n" ;
 
                

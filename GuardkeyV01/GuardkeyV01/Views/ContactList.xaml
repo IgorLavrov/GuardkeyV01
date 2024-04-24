@@ -13,7 +13,7 @@
         <ScrollView>
             <StackLayout>
 
-                <SearchBar Placeholder="Search"
+                <SearchBar Placeholder="Search by resource"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent" 
                            TextColor="White" 
@@ -44,31 +44,29 @@
                                                    BorderColor="#BB2C7A"
                                                    BackgroundColor="#1C0D2A"
                                                    Opacity="0.97">
-                                            <StackLayout Orientation="Horizontal">
-                                                <StackLayout >
-                                                    <Label Grid.Row="1" 
-        Grid.Column="1" 
-        Text="{Binding Categories}" 
-        TextColor="White" ></Label>
+                                            <StackLayout Orientation="Vertical" >
+                                                <Label Text="Card information" TextColor="White" FontSize="Large" Margin="10" />
 
-                                                    <Label Grid.Row="1" 
-                                                               Grid.Column="1" 
-                                                               Text="{Binding ResourceName}" 
-                                                               TextColor="White" ></Label>
-                                                    <Label Grid.Row="1" 
-Grid.Column="1" 
-Text="{Binding Description}" 
-TextColor="White" ></Label>
-                                                    <Label Grid.Row="1" 
-Grid.Column="1" 
-Text="{Binding UserName}" 
-TextColor="White" ></Label>
-                                                    <Label Grid.Row="1" 
-Grid.Column="1" 
-Text="{Binding Password}" 
-TextColor="White" ></Label>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Categories:" TextColor="gold" />
+                                                    <Label Text="{Binding Categories}" TextColor="White" />
                                                 </StackLayout>
-
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Resource Name:" TextColor="gold" />
+                                                    <Label Text="{Binding ResourceName}" TextColor="White" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Description:" TextColor="gold" />
+                                                    <Label Text="{Binding Description}" TextColor="White" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Username:" TextColor="gold" />
+                                                    <Label Text="{Binding UserName}" TextColor="White" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Password:" TextColor="gold" />
+                                                    <Label Text="{Binding Password}" TextColor="White" />
+                                                </StackLayout>
 
                                             </StackLayout>
                                         </Frame>
@@ -77,16 +75,7 @@ TextColor="White" ></Label>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                        <CollectionView.Header>
-                            <StackLayout>
-                                <Label Text="Password Card" 
-                                       FontSize="Large" 
-                                       TextColor="GhostWhite" 
-                                       HorizontalOptions="Center"/>
-
-                            </StackLayout>
-                        </CollectionView.Header>
-
+                        
                     </CollectionView>
                 </RefreshView>
             </StackLayout>
