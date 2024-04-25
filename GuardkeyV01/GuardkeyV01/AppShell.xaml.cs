@@ -39,7 +39,7 @@ namespace GuardkeyV01
 
         public ICommand HelpCommand => new Command(async () =>
             {
-                var url = "https://cubix.ee/en/";
+                var url = "https://cubix.ee/en";
                 await Browser.OpenAsync(url,BrowserLaunchMode.SystemPreferred);
             });
 
