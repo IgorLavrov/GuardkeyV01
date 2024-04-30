@@ -32,7 +32,7 @@ namespace GuardkeyV01.Services
                     {
                     new Category { CategoryName = "ALL" },
                     new Category { CategoryName = "HOME" },
-                    new Category { CategoryName = "FRIEND" }
+                    new Category { CategoryName = "WORK" }
                     };
 
                 await _database.InsertAllAsync(initialCategories).ConfigureAwait(false);
