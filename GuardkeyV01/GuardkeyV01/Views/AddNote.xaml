@@ -15,8 +15,8 @@
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="background.png" Aspect="AspectFill"/>
         <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" Spacing="5" Padding="15">
-
-            <Frame CornerRadius="10" BorderColor="Gold" HasShadow="True" BackgroundColor="Transparent">
+            <ScrollView>
+                <Frame CornerRadius="10" BorderColor="Gold" HasShadow="True" BackgroundColor="Transparent">
                 <Grid Padding="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -62,13 +62,14 @@
                 </Grid>
             </Frame>
 
-
+            </ScrollView>
             <StackLayout Spacing="10" Margin="15,10,15,0">
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
             <StackLayout Spacing="10" Margin="15,10,15,0">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" BackgroundColor="#3C6666" TextColor="White"/>
             </StackLayout>
+            
         </StackLayout>
     </AbsoluteLayout>
 

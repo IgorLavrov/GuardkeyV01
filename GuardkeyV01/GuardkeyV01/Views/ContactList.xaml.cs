@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -46,13 +48,23 @@ namespace GuardkeyV01.Views
                 {
                     case "SMS":
                         string phoneNumber = await DisplayPromptAsync("Phone number", "Enter Phone number", "OK", "Cancel");
-                        if (!string.IsNullOrEmpty(phoneNumber))
+                        if (!string.IsNullOrEmpty(phoneNumber) && IsValidPhoneNumber(phoneNumber))
+                        {
                             await SendSMS(phoneNumber, message);
+                        }
+                        else
+                        { DisplayAlert("Error", "Please enter a valid phone number.", "OK"); }
                         break;
                     case "Email":
                         string emailAddress = await DisplayPromptAsync("Email Address", "Enter email address", "OK", "Cancel");
-                        if (!string.IsNullOrEmpty(emailAddress))
+                        if (!string.IsNullOrEmpty(emailAddress) && IsValidEmail(emailAddress))
+                            { 
                             await SendEmail(emailAddress, message);
+                        }
+                        else
+                        {
+                            DisplayAlert("Error", "Please enter a valid email address.", "OK");
+                        }
                         break;
                 }
 
@@ -66,8 +78,19 @@ namespace GuardkeyV01.Views
             myCollectionView.SelectionChanged += OnItemSelected;
         }
 
-       
+        private bool IsValidEmail(string email)
+        {
+          
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(email);
+        }
 
+        private bool IsValidPhoneNumber(string phoneNumber)
+        {
+            
+            return Regex.IsMatch(phoneNumber, @"^\d+$");
+        }
         private async Task SendSMS(string phoneNumber, string message)
         {
             string smsPhoneNumber = phoneNumber;
