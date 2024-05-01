@@ -120,11 +120,15 @@ namespace GuardkeyV01.ViewModels
                            
                             await App.categoryService.DeleteCategoriesAsync(category);
 
-                           
-                            CategoryList.Remove(category);
+                            LoadNames();
+
+                            CategoryList.Remove(category);  
+
+
+
                         }
 
-                  
+                       
                     }
                     catch (Exception ex)
                     {
