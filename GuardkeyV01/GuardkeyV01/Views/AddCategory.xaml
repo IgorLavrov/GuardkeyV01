@@ -5,18 +5,48 @@
              Shell.BackgroundColor=" #3C6666"
              Shell.PresentationMode="ModalAnimated"
              Shell.TabBarIsVisible="False">
-
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <StackLayout BackgroundColor="Transparent" Padding="20" Spacing="20">
-                <Entry Text="{Binding CategoryName}" Placeholder="Category name" TextColor="White" PlaceholderColor="LightGray"
-                       BackgroundColor="Transparent" HeightRequest="40" TextChanged="Entry_TextChanged"/>
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Add" Command="{Binding AddCommand}" BackgroundColor="#3C6666" WidthRequest="100" TextColor="White"/>
-                    <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="#3C6666" WidthRequest="100" TextColor="White"/>
-                </StackLayout>
+        <Grid VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="test.png" 
+                   HorizontalOptions="Center" 
+                   Margin="0,10,0,0" 
+                   WidthRequest="200"
+                   HeightRequest="200"
+                   Grid.Row="1"/>
+
+            <Entry Grid.Row="3"
+                   Text="{Binding CategoryName}" 
+                   Placeholder="Category name" 
+                   TextColor="White" 
+                   PlaceholderColor="LightGray"
+                   BackgroundColor="Transparent" 
+                   HeightRequest="40" 
+                   TextChanged="Entry_TextChanged"/>
+
+            <StackLayout Grid.Row="4" Orientation="Horizontal">
+                <Button Text="Add" 
+                        Command="{Binding AddCommand}" 
+                        BackgroundColor="#3C6666" 
+                        WidthRequest="100" 
+                        TextColor="White"/>
+                <Button Text="Cancel" 
+                        Command="{Binding CancelCommand}" 
+                        BackgroundColor="#3C6666" 
+                        WidthRequest="100" 
+                        TextColor="White"/>
             </StackLayout>
-        </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
+
+ 
 </ContentPage>
            
